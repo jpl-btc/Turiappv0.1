@@ -4,6 +4,7 @@
 #                               #
 #################################
 
+
 testin <- function(package){
   if (!package %in% installed.packages()) {   
     message( "Instalando ", package)

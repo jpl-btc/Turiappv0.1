@@ -6,7 +6,7 @@
 # 
 #    http://shiny.rstudio.com/
 #
-setwd("C:/JPL/Dropbox/TURIECO/shinywebapp/turitest")
+setwd("C:/JPL/Dropbox/TURIECO/Turiappv0.1")
 
 library(shiny)
 testin <- function(package){
