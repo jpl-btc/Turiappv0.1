@@ -7,25 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
-testin <- function(package){
-  if (!package %in% installed.packages()) {   
-    message( "Instalando ", package)
-    install.packages(package)
-    print("paquete instalado")}
-  else {
-    message(" El paquete ", package, " ya se encontraba instalado.")}
-}
-testin("shiny")
-testin("dplyr")
-testin("tidyr")
-testin("gsheet")
-testin("ggplot2")
-
-library(shiny) 
-library(dplyr) 
-library(tidyr) 
-library(gsheet)
 
 
 Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing')

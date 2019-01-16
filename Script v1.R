@@ -5,6 +5,9 @@
 #################################
 
 
+# setwd("C:/JPL/Dropbox/TURIECO/Turiappv0.1")
+
+
 testin <- function(package){
   if (!package %in% installed.packages()) {   
     message( "Instalando ", package)
@@ -18,9 +21,7 @@ testin("dplyr")
 testin("tidyr")
 testin("gsheet")
 testin("ggplot2")
-testin("readr")
 
-library(readr) 
 library(shiny) 
 library(dplyr) 
 library(tidyr) 
