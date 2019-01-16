@@ -8,6 +8,10 @@
 #
 
 
+library(shiny) 
+library(dplyr) 
+library(tidyr) 
+library(gsheet)
 
 Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing')
 Tue2 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NswTR9EO-bxNcWOFsOF8eM-GiulCtf6MBh48VGzF614/edit?usp=sharing')
