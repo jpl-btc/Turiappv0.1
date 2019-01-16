@@ -18,7 +18,9 @@ testin("dplyr")
 testin("tidyr")
 testin("gsheet")
 testin("ggplot2")
+testin("readr")
 
+library(readr) 
 library(shiny) 
 library(dplyr) 
 library(tidyr) 
@@ -29,6 +31,18 @@ Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCE
 Tue2 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NswTR9EO-bxNcWOFsOF8eM-GiulCtf6MBh48VGzF614/edit?usp=sharing')
 
 Tue1y2 <- left_join(Tue1, Tue2, by = "Email Address")
+
+
+#Otra forma
+url1 <- 'docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing'
+a1 <- gsheet2text(url, format='csv')
+b1 <- read.csv(a, stringsAsFactors=FALSE)
+url2 <- 'docs.google.com/spreadsheets/d/1NswTR9EO-bxNcWOFsOF8eM-GiulCtf6MBh48VGzF614/edit?usp=sharing'
+a2 <- gsheet2text(url, format='csv')
+b2 <- read.csv(a, stringsAsFactors=FALSE)
+
+b1yb2 <- left_join(b1, b2, by = "Email Address")
+
 
 ###########
 # Promedios de PRE para cada individuo
