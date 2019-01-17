@@ -7,16 +7,29 @@
 #    http://shiny.rstudio.com/
 #
 
+library(log4r)
+loggerDebug <- create.logger()
+logfile(loggerDebug) <- 'data/debugData.log'
+level(loggerDebug) <- 'INFO'
 
+loggerServer <- create.logger()
+logfile(loggerServer) <- 'data/serverData.log'
+level(loggerServer) <- 'INFO'
+
+# examples of levels
+# debug(logger, 'A Debugging Message') # Won't print anything
+# info(logger, 'An Info Message')
+# warn(logger, 'A Warning Message')
+# error(logger, 'An Error Message')
+# fatal(logger, 'A Fatal Error Message')
 library(shiny) 
-library(dplyr) 
-library(tidyr) 
+library(tidyverse)
 library(gsheet)
 
 Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing')
 Tue2 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NswTR9EO-bxNcWOFsOF8eM-GiulCtf6MBh48VGzF614/edit?usp=sharing')
 
-Tue1y2 <- left_join(Tue1, Tue2, by = "Email.Address")
+Tue1y2 <- left_join(Tue1, Tue2, by = "Email Address")
 
 ###########
 # Promedios de PRE para cada individuo

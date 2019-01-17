@@ -17,10 +17,13 @@ testin <- function(package){
     message(" El paquete ", package, " ya se encontraba instalado.")}
 }
 testin("shiny")
-testin("dplyr")
-testin("tidyr")
 testin("gsheet")
 testin("ggplot2")
+testin("log4r")
+testin("tidyverse")
+testin("scales")
+testin("colorspace")
+
 
 library(shiny) 
 library(dplyr) 
