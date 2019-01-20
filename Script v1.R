@@ -26,9 +26,10 @@ testin("colorspace")
 
 
 library(shiny) 
-library(dplyr) 
-library(tidyr) 
 library(gsheet)
+library(tidyverse)
+library(log4r)
+library(ggplot2)
 
 
 Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing')
