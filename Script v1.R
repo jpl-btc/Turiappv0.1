@@ -23,6 +23,8 @@ testin("log4r")
 testin("tidyverse")
 testin("scales")
 testin("colorspace")
+testin("shinydashboard")
+
 
 
 library(shiny) 

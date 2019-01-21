@@ -7,28 +7,42 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot"),
-       plotOutput("distPlot2")
+library(shiny)
+library(shinydashboard)
+
+dashboardPage(
+  dashboardHeader(title="TURI APP"),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("General", tabName = "dashboard", icon = icon("dashboard")),
+      menuItem("Widgets", tabName = "widgets", icon = icon("th"))
     )
+  ),
+  
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "dashboard",
+              
+              fluidRow(
+                box(plotOutput("distPlot2")),
+                box(plotOutput("distPlot")),
+                box(
+                  title = "Controls",
+                  sliderInput("bins", "Number of bins:",
+                              min = 1,
+                              max = 50,
+                              value = 30)
+                )
+              )
+      ),
+      
+      tabItem(tabName = "widgets",
+              h2("Widgets tab content")
+      )
+    )
+    
+    
   )
-))
+)
+
