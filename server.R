@@ -22,6 +22,7 @@ level(loggerServer) <- 'INFO'
 # warn(logger, 'A Warning Message')
 # error(logger, 'An Error Message')
 # fatal(logger, 'A Fatal Error Message')
+
 library(shiny) 
 library(tidyverse)
 library(gsheet)

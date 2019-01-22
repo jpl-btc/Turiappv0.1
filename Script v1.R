@@ -46,15 +46,18 @@ Tue2 <-gsheet2tbl('docs.google.com/spreadsheets/d/1luumPYYc6r0JJEMJ3xC4mNA1GUox0
 Tue1y2 <- left_join(Tue1, Tue2, by = "Email Address")
 Tue1y2nona <- na.omit(Tue1y2)
 
-#Otra forma
-url1 <- 'docs.google.com/spreadsheets/d/1NPsqPnZGQDIwfscXwx36ZWeiF6CCEAgquN5juL3zB44/edit?usp=sharing'
-a1 <- gsheet2text(url, format='csv')
-b1 <- read.csv(a, stringsAsFactors=FALSE)
-url2 <- 'docs.google.com/spreadsheets/d/1NswTR9EO-bxNcWOFsOF8eM-GiulCtf6MBh48VGzF614/edit?usp=sharing'
-a2 <- gsheet2text(url, format='csv')
-b2 <- read.csv(a, stringsAsFactors=FALSE)
+Hours <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%H:%M:%S")
+#output
+Hours
 
-b1yb2 <- left_join(b1, b2, by = "Email Address")
+Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%d/%m/%Y")
+Dates
+Tue1y2nona$Dates <- Dates
+Tue1y2nona$Hours <- Hours
+
+
+
+Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
 
 
 ###########
