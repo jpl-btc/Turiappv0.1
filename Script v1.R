@@ -61,8 +61,8 @@ Tue1y2nona$ACCONL <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE)
 Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
 Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
 Tue1y2nona$GOOG.Open  <- Tue1y2nona$ACCPRE
-Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL +0.1
-Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE -0.1
+Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL +1
+Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE -2
 Tue1y2nona$GOOG.Close <- Tue1y2nona$ACCONL
 
 
@@ -70,8 +70,6 @@ Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timesta
 x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
 
 hchart(x4)
-
-
 
 
 ###########
