@@ -63,9 +63,14 @@ BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
   geom_boxplot() +
   theme(legend.position="top")
 
+
+#stock chart
+# x <- getSymbols("GOOG", auto.assign = FALSE)
+
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
+  
   output$distPlot <- renderPlot({
     
     # generate bins based on input$bins from ui.R
@@ -76,9 +81,16 @@ shinyServer(function(input, output) {
     hist(x, breaks = bins, col = 'darkgray', border = 'white')
     
   })
+  
   output$distPlot2 <- renderPlot({
     
     BoxmediaCA
+  })
+  
+  output$teststock <- renderHighchart({
+    
+    getSymbols("GOOG", auto.assign = FALSE) %>% 
+      hchart    
   })
   
 })
