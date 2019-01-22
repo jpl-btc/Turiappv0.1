@@ -38,6 +38,7 @@ library(gsheet)
 library(tidyverse)
 library(log4r)
 library(ggplot2)
+library(highcharter)
 
 
 Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1kd84-Rn1HKYF9DJ2pdRPbZYmqC2MD_JjM95by7RFFik/edit?usp=sharing')
@@ -65,9 +66,12 @@ Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL +1
 Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE -2
 Tue1y2nona$GOOG.Close <- Tue1y2nona$ACCONL
 
+Tue1y2nona3<-Tue1y2nona[5:6,]
 
-Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
-x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
+Tue1y2nona4 <-Tue1y2nona3 %>% remove_rownames %>% column_to_rownames(var="Dates")
+
+# Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
+x4 <-subset(Tue1y2nona4, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
 
 hchart(x4)
 
