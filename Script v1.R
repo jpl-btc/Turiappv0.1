@@ -54,10 +54,24 @@ Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",t
 Dates
 Tue1y2nona$Dates <- Dates
 Tue1y2nona$Hours <- Hours
-
+Tue1y2nona$CONPRE <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)
+Tue1y2nona$ACCPRE <- rowMeans(Tue1y2nona[,c(13:22)], na.rm=TRUE) 
+Tue1y2nona$CONONL <- rowMeans(Tue1y2nona[,c(29:32)], na.rm=TRUE) 
+Tue1y2nona$ACCONL <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE) 
+Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
+Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
+Tue1y2nona$GOOG.Open  <- Tue1y2nona$ACCPRE
+Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL +0.1
+Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE -0.1
+Tue1y2nona$GOOG.Close <- Tue1y2nona$ACCONL
 
 
 Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
+x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
+
+hchart(x4)
+
+
 
 
 ###########
