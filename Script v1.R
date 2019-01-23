@@ -28,8 +28,8 @@ testin("highcharter")
 testin("PerformanceAnalytics")
 testin("timetk")
 testin("kableExtra")
-testin("shiny")
-testin("shiny")
+testin("tidyquant")
+testin("tibbletime")
 testin("shiny")
 testin("shiny")
 
@@ -79,9 +79,6 @@ x4$Timestamp.x <-Tue1y2nona$Timestamp.x
 hchart(x4, "scatter",x = "Timestamp.x", y = -1:8)
 hchart(x)
 
-highchart(type = "stock") %>% 
-  hc_add_series(Tue1y2nona2$ACCDIF, type = "column")  %>% 
-  hc_add_series(Tue1y2nona2$CONDIF, type = "column")
 
 #testsheetfast
 testsheetfast <-gsheet2tbl('https://docs.google.com/spreadsheets/d/1kgFsF0xDLmjMjIK4-uQxxTUAuKmpUTzrWFU2dqtTu_M/edit?usp=sharing') 
@@ -91,55 +88,44 @@ library(timetk)
 library(kableExtra)
 library(highcharter)
 library(PerformanceAnalytics)
+library(tidyquant)
+library(tibbletime)
+library(tidyverse)
 
-symbols <- 
-  c("SPY","EFA", "IJS", "EEM","AGG")
 
-prices <- 
-  getSymbols(symbols, 
-             src = 'yahoo', 
-             from = "2013-01-01",
-             to = "2017-12-31",
-             auto.assign = TRUE, 
-             warnings = FALSE) %>% 
-  map(~Ad(get(.))) %>%
-  reduce(merge) %>% 
-  `colnames<-`(symbols)
+testsheetfast$date <- as.Date(testsheetfast$date)
 
-prices_monthly <- 
-  to.monthly(prices, 
+
+testsheetfast2 <-testsheetfast %>% remove_rownames %>% column_to_rownames(var="date")
+
+highchart(type = "stock") %>% 
+  hc_add_series(testsheetfast2$returns, type = "column",
+                color = "green")
+
+
+Tue1y2nona_monthly <- 
+  to.monthly(Tue1y2nona, 
              indexAt = "last", 
              OHLC = FALSE)
 
-asset_returns_xts <- 
-  na.omit(Return.calculate(prices_monthly, 
-                           method = "log"))
-
-asset_returns_xts <- asset_returns_xts * 100
-
-
-asset_returns_long <-  
-  prices %>% 
-  to.monthly(indexAt = "last", 
-             OHLC = FALSE) %>% 
-  tk_tbl(preserve_index = TRUE, 
-         rename_index = "date") %>%
-  gather(asset, returns, -date) %>% 
-  group_by(asset) %>%  
-  mutate(returns = 
-           (log(returns) - log(lag(returns))) *100
+#Highchart CONCIENCIA AMBIENTAL MENSUAL
+highchart() %>% 
+  hc_chart(type = "column") %>% 
+  hc_title(text = "Aumento de Conciencia ambiental de mis clientes") %>% 
+  hc_subtitle(text = "Mensualmente") %>% 
+  hc_xAxis(categories = Tue1y2nona$Dates) %>% 
+  hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
+  hc_plotOptions(line = list(
+    dataLabels = list(enabled = TRUE),
+    enableMouseTracking = FALSE)
   ) %>% 
-  na.omit()
-
-
-
-
-
-
-
-
-
-
+  hc_series(
+    list(
+      name = "Conciencia ambiental",
+      data = Tue1y2nona$ACCDIF,
+      color = "green")
+    )
+  
 
 ###########
 ###########
@@ -174,24 +160,22 @@ BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
   theme(legend.position="top")
 BoxmediaCA  # Graficos de cajas final PRE vs ONL
 
+
+
+
+
+
+###########ZONA DE TEST###############
 x <- getSymbols("YHOO", auto.assign = TUE)
-
 hchart(x, type= "stock")
-
-
 library("quantmod")
-
 x <- getSymbols(Tue1y2nona, auto.assign = TRUE)
-
 hchart(x)
-
-
 NUmediaONLCON <-subset(mediaPRECON, select = c(1))
 NUmediaPRECON <-subset(mediaPRECON, select = c(1))
 y <-  NUmediaONLCON - NUmediaPRECON
 x <- getSymbols(y, auto.assign = TRUE)
 library(mtcars)
-
 x <- getSymbols("GOOG", auto.assign = FALSE)
 hchart(x)
 
