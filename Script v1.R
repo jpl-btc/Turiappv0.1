@@ -55,6 +55,10 @@ Hours
 
 Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m-%d")
 Dates
+
+Mes <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m")
+
+Tue1y2nona$Mes <- Mes
 Tue1y2nona$Dates <- Dates
 Tue1y2nona$Hours <- Hours
 Tue1y2nona$CONPRE <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)
@@ -103,17 +107,21 @@ highchart(type = "stock") %>%
                 color = "green")
 
 
-Tue1y2nona_monthly <- 
-  to.monthly(Tue1y2nona, 
-             indexAt = "last", 
-             OHLC = FALSE)
+ACC <-subset(Tue1y2nona, select = c(Dates,ACCDIF))
+DiaACC <-aggregate(. ~Dates, data=ACC, mean, na.rm=TRUE)
 
-#Highchart CONCIENCIA AMBIENTAL MENSUAL
+
+
+#Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
+ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
+MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
+
+#Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
 highchart() %>% 
   hc_chart(type = "column") %>% 
   hc_title(text = "Aumento de Conciencia ambiental de mis clientes") %>% 
   hc_subtitle(text = "Mensualmente") %>% 
-  hc_xAxis(categories = Tue1y2nona$Dates) %>% 
+  hc_xAxis(categories = MesACC$Mes) %>% 
   hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
   hc_plotOptions(line = list(
     dataLabels = list(enabled = TRUE),
@@ -122,7 +130,7 @@ highchart() %>%
   hc_series(
     list(
       name = "Conciencia ambiental",
-      data = Tue1y2nona$ACCDIF,
+      data = MesACC$ACCDIF,
       color = "green")
     )
   
