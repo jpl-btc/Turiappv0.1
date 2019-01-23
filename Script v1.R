@@ -25,7 +25,9 @@ testin("scales")
 testin("colorspace")
 testin("shinydashboard")
 testin("highcharter")
-testin("quantmod")
+testin("PerformanceAnalytics")
+testin("timetk")
+testin("kableExtra")
 testin("shiny")
 testin("shiny")
 testin("shiny")
@@ -51,7 +53,7 @@ Hours <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",t
 #output
 Hours
 
-Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%d/%m/%Y")
+Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m-%d")
 Dates
 Tue1y2nona$Dates <- Dates
 Tue1y2nona$Hours <- Hours
@@ -66,14 +68,77 @@ Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL +1
 Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE -2
 Tue1y2nona$GOOG.Close <- Tue1y2nona$ACCONL
 
-Tue1y2nona3<-Tue1y2nona[5:6,]
+#Tue1y2nona3<-Tue1y2nona[5:6,]
 
-Tue1y2nona4 <-Tue1y2nona3 %>% remove_rownames %>% column_to_rownames(var="Dates")
+#Tue1y2nona4 <-Tue1y2nona3 %>% remove_rownames %>% column_to_rownames(var="Dates")
 
-# Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
-x4 <-subset(Tue1y2nona4, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
+ Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
+x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
 
-hchart(x4)
+x4$Timestamp.x <-Tue1y2nona$Timestamp.x
+hchart(x4, "scatter",x = "Timestamp.x", y = -1:8)
+hchart(x)
+
+highchart(type = "stock") %>% 
+  hc_add_series(Tue1y2nona2$ACCDIF, type = "column")  %>% 
+  hc_add_series(Tue1y2nona2$CONDIF, type = "column")
+
+#testsheetfast
+testsheetfast <-gsheet2tbl('https://docs.google.com/spreadsheets/d/1kgFsF0xDLmjMjIK4-uQxxTUAuKmpUTzrWFU2dqtTu_M/edit?usp=sharing') 
+
+library(tidyverse)
+library(timetk)
+library(kableExtra)
+library(highcharter)
+library(PerformanceAnalytics)
+
+symbols <- 
+  c("SPY","EFA", "IJS", "EEM","AGG")
+
+prices <- 
+  getSymbols(symbols, 
+             src = 'yahoo', 
+             from = "2013-01-01",
+             to = "2017-12-31",
+             auto.assign = TRUE, 
+             warnings = FALSE) %>% 
+  map(~Ad(get(.))) %>%
+  reduce(merge) %>% 
+  `colnames<-`(symbols)
+
+prices_monthly <- 
+  to.monthly(prices, 
+             indexAt = "last", 
+             OHLC = FALSE)
+
+asset_returns_xts <- 
+  na.omit(Return.calculate(prices_monthly, 
+                           method = "log"))
+
+asset_returns_xts <- asset_returns_xts * 100
+
+
+asset_returns_long <-  
+  prices %>% 
+  to.monthly(indexAt = "last", 
+             OHLC = FALSE) %>% 
+  tk_tbl(preserve_index = TRUE, 
+         rename_index = "date") %>%
+  gather(asset, returns, -date) %>% 
+  group_by(asset) %>%  
+  mutate(returns = 
+           (log(returns) - log(lag(returns))) *100
+  ) %>% 
+  na.omit()
+
+
+
+
+
+
+
+
+
 
 
 ###########
