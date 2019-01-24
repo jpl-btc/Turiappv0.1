@@ -125,7 +125,7 @@ shinyServer(function(input, output) {
     highchart() %>% 
       hc_chart(type = "column") %>% 
       hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
-      hc_subtitle(text = "De nuestros clientes un mes despues de habernos visitado") %>% 
+      hc_subtitle(text = "De las personas guiadas un mes despues de habernos conocido") %>% 
       hc_xAxis(categories = MesACC$Mes) %>% 
       hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
       hc_plotOptions(line = list(
@@ -144,7 +144,7 @@ shinyServer(function(input, output) {
     highchart() %>% 
       hc_chart(type = "column") %>% 
       hc_title(text = "Aumento del conocimiento ambiental") %>% 
-      hc_subtitle(text = "De nuestros clientes un mes despues de habernos visitado") %>% 
+      hc_subtitle(text = "De las personas guiadas un mes despues de habernos conocido") %>% 
       hc_xAxis(categories = MesCON$Mes) %>% 
       hc_yAxis(title = list(text = "Puntaje en Conocimiento")) %>% 
       hc_plotOptions(line = list(

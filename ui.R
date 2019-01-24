@@ -30,7 +30,7 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "dashboard",
-              h2("El aumento de conciencia ambiental de nuestros clientes"),
+              h2("El aumento de conciencia ambiental de las personas que nos conocieron"),
               fluidRow(
                 box(title="Acciones",
                     highchartOutput("accionesmes")),
