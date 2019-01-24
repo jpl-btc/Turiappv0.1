@@ -148,7 +148,7 @@ MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
 highchart() %>% 
   hc_chart(type = "column") %>% 
   hc_title(text = "Aumento del conocimiento ambiental") %>% 
-  hc_subtitle(text = "De nuestros clientes un mes después de habernos visitado") %>% 
+  hc_subtitle(text = "De nuestros clientes un mes despues de habernos visitado") %>% 
   hc_xAxis(categories = MesCON$Mes) %>% 
   hc_yAxis(title = list(text = "Puntaje en Conocimiento")) %>% 
   hc_plotOptions(line = list(
@@ -157,7 +157,7 @@ highchart() %>%
   ) %>% 
   hc_series(
     list(
-      name = "Conocimiento de problemáticas ambientales",
+      name = "Conocimiento de problematicas ambientales",
       data = MesCON$CONDIF,
       color = "BLUE")
   )
