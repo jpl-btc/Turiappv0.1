@@ -56,83 +56,15 @@ Tue1y2nona$Mes <- Mes
 Tue1y2nona$date <- date
 ################ FECHAS ############################
 
+################ las DIF ############################
 Tue1y2nona$CONPRE <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)
 Tue1y2nona$ACCPRE <- rowMeans(Tue1y2nona[,c(13:22)], na.rm=TRUE) 
 Tue1y2nona$CONONL <- rowMeans(Tue1y2nona[,c(29:32)], na.rm=TRUE) 
 Tue1y2nona$ACCONL <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE) 
 Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
 Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
+################ las DIF ############################
 
-###################################################
-# testing el puto stock chart xts ohlc
-########
-
-library(xts)
-xts1 <- xts(x=1:10, order.by=Sys.Date()-1:10)
-data <- rnorm(5)
-dates <- seq(as.Date("2017-05-01"), length=5, by="days")
-xts2 <- xts(x=data, order.by=dates)
-xts3 <- xts(x=rnorm(10), order.by=as.POSIXct(Sys.Date()+1:10), born=as.POSIXct("1899-05-08"),
-            xts4 <- xts(x=1:10, order.by=Sys.Date()+1:10))
-data(AirPassengers)
-xts5 <- as.xts(AirPassengers)
-
-core_data <- coredata(xts2)
-index(xts1)
-indexClass(xts2)
-indexClass(convertIndex(xts,'POSIXct'))
-indexTZ(xts5)
-indexFormat(xts5) <- "%Y-%m-%d"
-periodicity(xts5)
-to.monthly(xts5)
-hchart(xts3)
-hchart(xts5, type= "stock")
-
-
-
-
-
-x4 <-subset(Tue1y2nona, select = c(date,ACCDIF),na.rm=TRUE)
-x5 <-as.Date("05-30-16", "%m-%d-%y")
-
-
-xx <- to.daily(x4,drop.time=TRUE,name)
-xx <- to.period(x4,period = "months", k = 1, indexAt, name=NULL, OHLC = TRUE)
-
-
- Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
-x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
-
-x4$Timestamp.x <-Tue1y2nona$Timestamp.x
-hchart(x4, "scatter",x = "Timestamp.x", y = -1:8)
-hchart(x)
-
-
-#testsheetfast
-testsheetfast <-gsheet2tbl('https://docs.google.com/spreadsheets/d/1kgFsF0xDLmjMjIK4-uQxxTUAuKmpUTzrWFU2dqtTu_M/edit?usp=sharing') 
-
-library(tidyverse)
-library(timetk)
-library(kableExtra)
-library(highcharter)
-library(PerformanceAnalytics)
-library(tidyquant)
-library(tibbletime)
-library(tidyverse)
-
-
-testsheetfast$date <- as.Date(testsheetfast$date)
-
-
-testsheetfast2 <-testsheetfast %>% remove_rownames %>% column_to_rownames(var="date")
-
-highchart(type = "stock") %>% 
-  hc_add_series(testsheetfast2$returns, type = "column",
-                color = "green")
-
-
-ACC <-subset(Tue1y2nona, select = c(Dates,ACCDIF))
-DiaACC <-aggregate(. ~Dates, data=ACC, mean, na.rm=TRUE)
 
 
 ################ GRAFICO 1 ############################
@@ -226,13 +158,25 @@ BoxmediaCA  # Graficos de cajas final PRE vs ONL
 
 
 
+######################################################################################################
+###########ZONA DE TEST##################################################################
+######################################################################################################
+library(quantmod)
+library(tidyverse)
+library(timetk)
+library(kableExtra)
+library(highcharter)
+library(PerformanceAnalytics)
+library(tidyquant)
+library(tibbletime)
+library(tidyverse)
 
-###########ZONA DE TEST###############
-library("quantmod")
-##########Este funca###########
-x <- getSymbols("GOOG", auto.assign = FALSE)
-hchart(x)
-##########Testboxplot
+#testsheetfast
+testsheetfast <-gsheet2tbl('https://docs.google.com/spreadsheets/d/1kgFsF0xDLmjMjIK4-uQxxTUAuKmpUTzrWFU2dqtTu_M/edit?usp=sharing') 
+
+
+
+########## Testboxplot #############################################
 hcboxplot(x = diamonds$x, var = diamonds$color, var2 = diamonds$cut,
           outliers = FALSE) %>% 
   hc_chart(type = "column") # to put box vertical
@@ -242,3 +186,59 @@ hcboxplot(x = diamonds$x,#esta es la difcon#
           var = diamonds$AntesvsDespues, var2 = diamonds$conocimientooacciones,
           outliers = FALSE) %>% 
   hc_chart(type = "column") # to put box vertical
+###################################################
+
+
+
+
+########## hicharts stock##########################
+x <- getSymbols("GOOG", auto.assign = FALSE)
+hchart(x)
+###############
+###################################################
+# testing el puto stock chart xts ohlc
+########
+
+library(xts)
+xts1 <- xts(x=1:10, order.by=Sys.Date()-1:10)
+data <- rnorm(5)
+dates <- seq(as.Date("2017-05-01"), length=5, by="days")
+xts2 <- xts(x=data, order.by=dates)
+xts3 <- xts(x=rnorm(10), order.by=as.POSIXct(Sys.Date()+1:10), born=as.POSIXct("1899-05-08"),
+            xts4 <- xts(x=1:10, order.by=Sys.Date()+1:10))
+data(AirPassengers)
+xts5 <- as.xts(AirPassengers)
+
+core_data <- coredata(xts2)
+index(xts1)
+indexClass(xts2)
+indexClass(convertIndex(xts,'POSIXct'))
+indexTZ(xts5)
+indexFormat(xts5) <- "%Y-%m-%d"
+periodicity(xts5)
+to.monthly(xts5)
+hchart(xts3)
+hchart(xts5, type= "stock")
+
+x4 <-subset(Tue1y2nona, select = c(date,ACCDIF),na.rm=TRUE)
+x5 <-as.Date("05-30-16", "%m-%d-%y")
+xx <- to.daily(x4,drop.time=TRUE,name)
+xx <- to.period(x4,period = "months", k = 1, indexAt, name=NULL, OHLC = TRUE)
+Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
+x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
+x4$Timestamp.x <-Tue1y2nona$Timestamp.x
+hchart(x4, "scatter",x = "Timestamp.x", y = -1:8)
+hchart(x)
+
+testsheetfast$date <- as.Date(testsheetfast$date)
+testsheetfast2 <-testsheetfast %>% remove_rownames %>% column_to_rownames(var="date")
+highchart(type = "stock") %>% 
+  hc_add_series(testsheetfast2$returns, type = "column",
+                color = "green")
+ACC <-subset(Tue1y2nona, select = c(Dates,ACCDIF))
+DiaACC <-aggregate(. ~Dates, data=ACC, mean, na.rm=TRUE)
+
+######################################################################################################
+######################################################################################################
+######################################################################################################
+
