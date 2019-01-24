@@ -159,5 +159,12 @@ shinyServer(function(input, output) {
           color = "BLUE")
       )
   })
+
+  output$approvalBox2 <- renderInfoBox({
+    infoBox(
+      "Approval", icon = icon("thumbs-up", lib = "glyphicon"),
+      color = "green", fill = TRUE
+    )
+  })
   
 })
