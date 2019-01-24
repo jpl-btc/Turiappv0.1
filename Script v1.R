@@ -50,12 +50,10 @@ Tue1y2 <- left_join(Tue1, Tue2, by = "Email Address")
 Tue1y2nona <- na.omit(Tue1y2)
 
 ################ FECHAS ############################
-Hours <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%H:%M:%S")
-Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m-%d")
-Mes <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m")
+date <- format(as.Date.POSIXct(as.numeric(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="GMT")) ,format = "%Y-%m-%d", origin="2019-01-01 00:00:00"))
+Mes <- format(as.Date.POSIXct(as.numeric(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="GMT")) ,format = "%Y-%m", origin="2019-01-01 00:00:00"))
 Tue1y2nona$Mes <- Mes
-Tue1y2nona$Dates <- Dates
-Tue1y2nona$Hours <- Hours
+Tue1y2nona$date <- date
 ################ FECHAS ############################
 
 Tue1y2nona$CONPRE <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)
@@ -65,15 +63,42 @@ Tue1y2nona$ACCONL <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE)
 Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
 Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
 
+###################################################
+# testing el puto stock chart xts ohlc
+########
 
-Tue1y2nona$GOOG.Open  <- Tue1y2nona$ACCPRE
-Tue1y2nona$GOOG.High  <- Tue1y2nona$ACCONL 
-Tue1y2nona$GOOG.Low   <- Tue1y2nona$ACCPRE
-Tue1y2nona$GOOG.Close <- Tue1y2nona$ACCONL
+library(xts)
+xts1 <- xts(x=1:10, order.by=Sys.Date()-1:10)
+data <- rnorm(5)
+dates <- seq(as.Date("2017-05-01"), length=5, by="days")
+xts2 <- xts(x=data, order.by=dates)
+xts3 <- xts(x=rnorm(10), order.by=as.POSIXct(Sys.Date()+1:10), born=as.POSIXct("1899-05-08"),
+            xts4 <- xts(x=1:10, order.by=Sys.Date()+1:10))
+data(AirPassengers)
+xts5 <- as.xts(AirPassengers)
 
-#Tue1y2nona3<-Tue1y2nona[5:6,]
+core_data <- coredata(xts2)
+index(xts1)
+indexClass(xts2)
+indexClass(convertIndex(xts,'POSIXct'))
+indexTZ(xts5)
+indexFormat(xts5) <- "%Y-%m-%d"
+periodicity(xts5)
+to.monthly(xts5)
+hchart(xts3)
+hchart(xts5, type= "stock")
 
-#Tue1y2nona4 <-Tue1y2nona3 %>% remove_rownames %>% column_to_rownames(var="Dates")
+
+
+
+
+x4 <-subset(Tue1y2nona, select = c(date,ACCDIF),na.rm=TRUE)
+x5 <-as.Date("05-30-16", "%m-%d-%y")
+
+
+xx <- to.daily(x4,drop.time=TRUE,name)
+xx <- to.period(x4,period = "months", k = 1, indexAt, name=NULL, OHLC = TRUE)
+
 
  Tue1y2nona2 <-Tue1y2nona %>% remove_rownames %>% column_to_rownames(var="Timestamp.x")
 x4 <-subset(Tue1y2nona2, select = c(GOOG.Open,GOOG.High,GOOG.Low,GOOG.Close),na.rm=TRUE)
@@ -203,16 +228,17 @@ BoxmediaCA  # Graficos de cajas final PRE vs ONL
 
 
 ###########ZONA DE TEST###############
-x <- getSymbols("YHOO", auto.assign = TUE)
-hchart(x, type= "stock")
 library("quantmod")
-x <- getSymbols(Tue1y2nona, auto.assign = TRUE)
-hchart(x)
-NUmediaONLCON <-subset(mediaPRECON, select = c(1))
-NUmediaPRECON <-subset(mediaPRECON, select = c(1))
-y <-  NUmediaONLCON - NUmediaPRECON
-x <- getSymbols(y, auto.assign = TRUE)
-library(mtcars)
+##########Este funca###########
 x <- getSymbols("GOOG", auto.assign = FALSE)
 hchart(x)
+##########Testboxplot
+hcboxplot(x = diamonds$x, var = diamonds$color, var2 = diamonds$cut,
+          outliers = FALSE) %>% 
+  hc_chart(type = "column") # to put box vertical
 
+##hay que juntar y reordenar la datatable
+hcboxplot(x = diamonds$x,#esta es la difcon#
+          var = diamonds$AntesvsDespues, var2 = diamonds$conocimientooacciones,
+          outliers = FALSE) %>% 
+  hc_chart(type = "column") # to put box vertical

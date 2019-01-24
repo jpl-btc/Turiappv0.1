@@ -47,6 +47,7 @@ dashboardPage(
               h2("Detalle de las encuestas previas y online"),
               h4("Visualizacion de conciencia ambiental en la encuesta que hacen en su celular antes de la excursion y la posterior"),
               h3("Lanzamiento en Abril 2019"),
+              h4("Vista previa aproximada:"),
               
               fluidRow(
                 box(plotOutput("distPlot2")))
