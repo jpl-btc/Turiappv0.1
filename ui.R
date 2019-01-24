@@ -18,7 +18,12 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("General", tabName = "dashboard", icon = icon("dashboard")),
-      menuItem("Individuos", tabName = "widgets", icon = icon("th"))
+      menuItem("Antes vs Despues", tabName = "avd", icon = icon("th")),
+      menuItem("Individuos", tabName = "individuos", icon = icon("th")),
+      menuItem("Preguntas", tabName = "preguntas", icon = icon("th")),
+      menuItem("Top Guias", tabName = "topguia", icon = icon("th")),
+      menuItem("Global", tabName = "global", icon = icon("th"))
+      
     )
   ),
   
@@ -39,12 +44,37 @@ dashboardPage(
                     highchartOutput("teststock"))
               )
       ),
-      
-      tabItem(tabName = "widgets",
-              h2("Proximamente... 01/06/2019: herramientas para ver el cambio en Individuos ")
+      tabItem(tabName = "avd",
+              h2("Detalle de las encuestas previas y online"),
+              h4("Visualizacion de conciencia ambiental en la encuesta que hacen en su celular antes de la excursion y la posterior"),
+              h3("Lanzamiento en Abril 2019")
+      ),
+      tabItem(tabName = "individuos",
+              h2("Lo que pasa exactamente en cada individuo particular"),
+              h4("Detalle del aumento de conciencia ambiental en cada cliente particular"),
+              h3("Lanzamiento en Junio 2019")
+      ),
+      tabItem(tabName = "preguntas",
+              h2("Cada accion en concreto"),
+              h4("Se va poder ver cual es el cambio en particular de cada pregunta"),
+              h3("Lanzamiento en Agosto 2019")
+      ),
+      tabItem(tabName = "topguia",
+              h2("Lista de los guias mas concientizadores"),
+              h4("Ubicacion en una tabla de posiciones de los guias mas concientizadores de todos los que participan del proyecto"),
+              h3("Lanzamiento en Octubre 2019")
+      ),
+      tabItem(tabName = "global",
+              h2("Detalle en un mapa de la conciencia ambiental"),
+              h4("Conciencia ambiental generada por todos los participantes de este proyecto"),
+              h3("Lanzamiento en Diciembre 2019")
       )
+      
+     
     )
-    
-    
   )
-)
+  )
+    
+
+
+
