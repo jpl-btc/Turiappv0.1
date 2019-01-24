@@ -6,7 +6,8 @@
 # 
 #    http://shiny.rstudio.com/
 #
-
+library(shiny)
+library(shinydashboard)
 library(log4r)
 loggerDebug <- create.logger()
 logfile(loggerDebug) <- 'data/debugData.log'
