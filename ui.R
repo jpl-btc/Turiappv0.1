@@ -6,7 +6,7 @@
 # 
 #    http://shiny.rstudio.com/
 #
-
+#
 
 library(shiny)
 library(shinydashboard)
@@ -56,7 +56,6 @@ dashboardPage(skin = "blue",
                                 min = 1,
                                 max = 50,
                                 value = 30)
-
                 )
                 
                 
