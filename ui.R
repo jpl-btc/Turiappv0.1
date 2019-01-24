@@ -30,24 +30,26 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "dashboard",
-              
+              h2("El aumento de conciencia ambiental de nuestros clientes"),
               fluidRow(
-                box(plotOutput("distPlot2")),
-                box(plotOutput("distPlot")),
-                box(
-                  title = "Controls",
+                box(title="Acciones",
+                    highchartOutput("accionesmes")),
+                box(title="Conocimiento",
+                    highchartOutput("conocimientomes")),
+                box(title = "Controls",
                   sliderInput("bins", "Number of bins:",
                               min = 1,
                               max = 50,
-                              value = 30)),
-                box(title="Test stock",
-                    highchartOutput("teststock"))
+                              value = 30))
               )
       ),
       tabItem(tabName = "avd",
               h2("Detalle de las encuestas previas y online"),
               h4("Visualizacion de conciencia ambiental en la encuesta que hacen en su celular antes de la excursion y la posterior"),
-              h3("Lanzamiento en Abril 2019")
+              h3("Lanzamiento en Abril 2019"),
+              
+              fluidRow(
+                box(plotOutput("distPlot2")))
       ),
       tabItem(tabName = "individuos",
               h2("Lo que pasa exactamente en cada individuo particular"),
