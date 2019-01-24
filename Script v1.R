@@ -111,16 +111,17 @@ ACC <-subset(Tue1y2nona, select = c(Dates,ACCDIF))
 DiaACC <-aggregate(. ~Dates, data=ACC, mean, na.rm=TRUE)
 
 
-
+################ GRAFICO 1 ############################
 #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
 ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
 MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
+MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
 
 #Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
 highchart() %>% 
   hc_chart(type = "column") %>% 
-  hc_title(text = "Aumento de Conciencia ambiental de mis clientes") %>% 
-  hc_subtitle(text = "Mensualmente") %>% 
+  hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
+  hc_subtitle(text = "De nuestros clientes un mes después de habernos visitado") %>% 
   hc_xAxis(categories = MesACC$Mes) %>% 
   hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
   hc_plotOptions(line = list(
@@ -132,8 +133,34 @@ highchart() %>%
       name = "Conciencia ambiental",
       data = MesACC$ACCDIF,
       color = "green")
-    )
-  
+  )
+########################################################
+
+################ GRAFICO 2 ############################
+#Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
+CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
+MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
+MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
+
+#Highchart CONOCIMIENTO AMBIENTAL MENSUAL ACC
+highchart() %>% 
+  hc_chart(type = "column") %>% 
+  hc_title(text = "Aumento del conocimiento ambiental") %>% 
+  hc_subtitle(text = "De nuestros clientes un mes después de habernos visitado") %>% 
+  hc_xAxis(categories = MesCON$Mes) %>% 
+  hc_yAxis(title = list(text = "Puntaje en Conocimiento")) %>% 
+  hc_plotOptions(line = list(
+    dataLabels = list(enabled = TRUE),
+    enableMouseTracking = FALSE)
+  ) %>% 
+  hc_series(
+    list(
+      name = "Conocimiento de problemáticas ambientales",
+      data = MesCON$CONDIF,
+      color = "BLUE")
+  )
+########################################################
+
 
 ###########
 ###########
