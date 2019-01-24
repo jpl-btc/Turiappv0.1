@@ -159,10 +159,15 @@ shinyServer(function(input, output) {
           color = "BLUE")
       )
   })
-
-  output$approvalBox2 <- renderInfoBox({
+  output$approvalBoxtodo <- renderInfoBox({
     infoBox(
-      "Approval", icon = icon("thumbs-up", lib = "glyphicon"),
+      "Siempre", icon = icon("thumbs-up", lib = "glyphicon"),
+      color = "green", fill = TRUE
+    )
+  })
+  output$approvalBoxmespasado <- renderInfoBox({
+    infoBox(
+      "Mes pasado", icon = icon("thumbs-up", lib = "glyphicon"),
       color = "green", fill = TRUE
     )
   })

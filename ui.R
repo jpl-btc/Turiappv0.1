@@ -13,7 +13,7 @@ library(shinydashboard)
 library(highcharter)
 library(quantmod)
 
-dashboardPage(
+dashboardPage(skin = "blue",
   dashboardHeader(title="TURI APP"),
   dashboardSidebar(
     sidebarMenu(
@@ -33,9 +33,9 @@ dashboardPage(
               h2("El aumento de conciencia ambiental de las personas que nos conocieron"),
               
               fluidRow(
-                infoBox("New Orders", 10 * 2, icon = icon("credit-card"), fill = TRUE),
-                infoBoxOutput("approvalBox2"),
-                infoBox("LALA", 10 * 2, icon = icon("credit-card"), fill = TRUE)
+                infoBoxOutput("approvalBoxtodo"),
+                infoBoxOutput("approvalBoxmespasado"),
+                infoBox("Certificado", icon = icon("award"), fill = TRUE)
               ),
               
               fluidRow(
@@ -46,10 +46,6 @@ dashboardPage(
                     highchartOutput("conocimientomes")),
                 
                 box(title = "Controles", status = "primary", solidHeader = TRUE,
-                    sliderInput("Excursion", "Tipo de producto ecoturistico:",
-                                min = 1,
-                                max = 50,
-                                value = 30),
                     sliderInput("Guia", "Nombre de la persona que realizo la guiada, charla e interpretacion de fauna",
                                 min = 1,
                                 max = 50,
@@ -59,12 +55,10 @@ dashboardPage(
                     sliderInput("Excursion", "Tipo de producto ecoturistico:",
                                 min = 1,
                                 max = 50,
-                                value = 30),
-                    sliderInput("Guia", "Nombre de la persona que realizo la guiada, charla e interpretacion de fauna",
-                                min = 1,
-                                max = 50,
                                 value = 30)
+
                 )
+                
                 
               )
       ),
