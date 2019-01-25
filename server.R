@@ -6,6 +6,10 @@
 # 
 #    http://shiny.rstudio.com/
 #
+
+options(encoding = "UTF-8")
+
+
 library(shiny)
 library(shinydashboard)
 library(log4r)

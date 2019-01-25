@@ -30,7 +30,7 @@ testin("timetk")
 testin("kableExtra")
 testin("tidyquant")
 testin("tibbletime")
-testin("shiny")
+testin("")
 testin("shiny")
 
 
@@ -78,7 +78,7 @@ MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
 highchart() %>% 
   hc_chart(type = "column") %>% 
   hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
-  hc_subtitle(text = "De nuestros clientes un mes después de habernos visitado") %>% 
+  hc_subtitle(text = "De nuestros clientes un mes despuÃ©s de habernos visitado") %>% 
   hc_xAxis(categories = MesACC$Mes) %>% 
   hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
   hc_plotOptions(line = list(

@@ -7,11 +7,13 @@
 #    http://shiny.rstudio.com/
 #
 #
+options(encoding = "UTF-8")
 
 library(shiny)
 library(shinydashboard)
 library(highcharter)
 library(quantmod)
+
 
 dashboardPage(skin = "blue",
   dashboardHeader(title="TURI APP"),
@@ -51,11 +53,10 @@ dashboardPage(skin = "blue",
                                 max = 50,
                                 value = 30)
                     ),
-                box(title = "Controles", status = "primary", solidHeader = TRUE,
-                    sliderInput("Excursion", "Tipo de producto ecoturistico:",
-                                min = 1,
-                                max = 50,
-                                value = 30)
+                box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
+
+                    selectInput("x", label = "Tipo de excursion o producto ecoturistico", width = "100%",
+                                choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`))
                 )
                 
                 
