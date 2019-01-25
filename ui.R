@@ -49,12 +49,12 @@ dashboardPage(skin = "blue",
                 
                 box(title = "Guía", status = "primary", solidHeader = TRUE,
                     selectInput("x2", label = "Nombre de la persona que realizo la guiada", width = "100%",
-                                choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"))
+                                choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"), selected = "Todos")
                     ),
                 box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
 
                     selectInput("x", label = "Tipo de excursión o producto ecoturistico", width = "100%",
-                                choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"))
+                                choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"), selected = "Todas")
                 )
                 
                 
