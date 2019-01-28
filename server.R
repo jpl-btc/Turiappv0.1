@@ -13,6 +13,7 @@ options(encoding = "UTF-8")
 library(shiny)
 library(shinydashboard)
 library(log4r)
+
 loggerDebug <- create.logger()
 logfile(loggerDebug) <- 'data/debugData.log'
 level(loggerDebug) <- 'INFO'
@@ -23,10 +24,7 @@ level(loggerServer) <- 'INFO'
 
 
 
-library(shiny) 
-library(tidyverse)
-library(gsheet)
-library(ggplot2)
+
 
 
 

@@ -9,11 +9,7 @@
 #
 options(encoding = "UTF-8")
 
-library(shiny)
-library(shinydashboard)
-library(highcharter)
-library(quantmod)
-library(shinyWidgets)
+
 
 
 dashboardPage(skin = "blue",
