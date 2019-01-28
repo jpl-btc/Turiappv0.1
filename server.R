@@ -124,6 +124,10 @@ shinyServer(function(input, output) {
       color = "green", fill = TRUE
     )
   })
+  ################ GRAFICO 3 ############################
+  
+  output$distPlot2 <- renderPlot({
+    BoxmediaCA})
   
 
 })

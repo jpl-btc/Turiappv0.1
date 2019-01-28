@@ -39,4 +39,32 @@ Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
 Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
 
 
+################ GRAFICO 3 ############################
+# Promedios de PRE para cada individuo
+media <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)    #CON
+mediaPRECON <-as.data.frame(media)
+mediaPRECON[["tipo"]] <- "1 CONOCIMIENTO"
+mediaPRECON[["encuesta"]] <- "PREVIA"
+mediaPRECON[["CategriaCA"]] <- "CONOCIMIENTO"
+media <- rowMeans(Tue1y2nona[,c(13:22)], na.rm=TRUE)      #ACCIONES
+mediaPREACC <-as.data.frame(media)
+mediaPREACC[["tipo"]] <- "2 ACCIONES"
+mediaPREACC[["encuesta"]] <- "PREVIA"
+mediaPREACC[["CategriaCA"]] <- "ACCIONES"
+# Promedios de ONL para cada individuo
+media <- rowMeans(Tue1y2nona[,c(29:32)], na.rm=TRUE)      #CON
+mediaONLCON <-as.data.frame(media)
+mediaONLCON[["tipo"]] <- "3 CONOCIMIENTO"
+mediaONLCON[["encuesta"]] <- "POSTERIOR"
+mediaONLCON[["CategriaCA"]] <- "CON"
+media <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE)      #ACCIONES
+mediaONLACC <-as.data.frame(media)
+mediaONLACC[["tipo"]] <- "4 ACCIONES"
+mediaONLACC[["encuesta"]] <- "POSTERIOR"
+mediaONLACC[["CategriaCA"]] <- "ACCIONES"
+mediaCA <- rbind(mediaPRECON,mediaPREACC,mediaONLCON,mediaONLACC)
+BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
+  geom_boxplot() +
+  theme(legend.position="top")
+
 
