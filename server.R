@@ -115,39 +115,36 @@ shinyServer(function(input, output) {
     
     if (input$guia=="Todos" & input$productoeco=="Todos") {
       Tue1y2nona }
-      
-     else if (input$guia =="Todos" & !input$productoeco=="Todos") {
-       filter(Tue1y2nona,
-       Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
     
-     else if (!input$guia =="Todos" & input$productoeco=="Todos") {
-       filter(Tue1y2nona,
-       Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia)}
+    else if (input$guia =="Todos" & !input$productoeco=="Todos") {
+      filter(Tue1y2nona,
+             Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
     
-      else if (!input$guia =="Todos" & !input$productoeco=="Todos") {
-        filter(Tue1y2nona,
-        Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia &
-        Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
-     
-    })
+    else if (!input$guia =="Todos" & input$productoeco=="Todos") {
+      filter(Tue1y2nona,
+             Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia)}
+    
+    else if (!input$guia =="Todos" & !input$productoeco=="Todos") {
+      filter(Tue1y2nona,
+             Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia &
+               Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
+    
+  })
   
-  ################ GRAFICO 1 ############################
-  #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
-  ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
-  MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
-  MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
-  ################ GRAFICO 1 ############################
+
   
-  ################ GRAFICO 2 ############################
-  #Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
-  CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
-  MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
-  MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
-  ################ GRAFICO 2 ############################
 
+  
 
-  output$accionesmes <- renderHighchart({
-    #Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
+  
+  #Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
+    output$accionesmes <- renderHighchart({
+    ################ GRAFICO 1 ############################
+    #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
+    ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
+    MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
+    MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
+    ################ GRAFICO 1 ############################
     highchart() %>% 
       hc_chart(type = "column") %>% 
       hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
@@ -166,7 +163,14 @@ shinyServer(function(input, output) {
       )
   })
   
-  output$conocimientomes <- renderHighchart({
+    #Highchart CONCIENCIA AMBIENTAL MENSUAL CON
+      output$conocimientomes <- renderHighchart({
+    ################ GRAFICO 2 ############################
+    #Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
+    CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
+    MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
+    MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
+    ################ GRAFICO 2 ############################
     highchart() %>% 
       hc_chart(type = "column") %>% 
       hc_title(text = "Aumento del conocimiento ambiental") %>% 
