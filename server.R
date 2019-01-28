@@ -63,22 +63,6 @@ Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
 ################ preparacion GRAFICOS Hichart ############################
 
 
-################ GRAFICO 1 ############################
-#Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
-ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
-MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
-MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
-################ GRAFICO 1 ############################
-
-################ GRAFICO 2 ############################
-#Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
-CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
-MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
-MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
-################ GRAFICO 2 ############################
-
-
-
 
 
 #######################################################
@@ -112,19 +96,56 @@ mediaCA <- rbind(mediaPRECON,mediaPREACC,mediaONLCON,mediaONLACC)
 BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
   geom_boxplot() +
   theme(legend.position="top")
+
 ################ GRAFICO 3 ############################
 
 
-# Define server logic required to draw a histogram
+
+
+
+
+#######################################################
+################# INICIAR SERVIDORSHINY ###############
+#######################################################
+
 shinyServer(function(input, output) {
   
-  output$distPlot2 <- renderPlot({
-    BoxmediaCA})
+  #Filtra la tabla de datos en funcion de la seleccion de guia y ecoproducto
+  output$data <- renderTable({
+    
+    if (input$guia=="Todos" & input$productoeco=="Todos") {
+      Tue1y2nona }
+      
+     else if (input$guia =="Todos" & !input$productoeco=="Todos") {
+       filter(Tue1y2nona,
+       Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
+    
+     else if (!input$guia =="Todos" & input$productoeco=="Todos") {
+       filter(Tue1y2nona,
+       Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia)}
+    
+      else if (!input$guia =="Todos" & !input$productoeco=="Todos") {
+        filter(Tue1y2nona,
+        Tue1y2nona$`¿Cuál es el nombre de su guía?` == input$guia &
+        Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
+     
+    })
   
-  output$teststock <- renderHighchart({
-    getSymbols("GOOG", auto.assign = FALSE) %>% 
-      hchart})
+  ################ GRAFICO 1 ############################
+  #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
+  ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
+  MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
+  MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
+  ################ GRAFICO 1 ############################
   
+  ################ GRAFICO 2 ############################
+  #Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
+  CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
+  MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
+  MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
+  ################ GRAFICO 2 ############################
+
+
   output$accionesmes <- renderHighchart({
     #Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
     highchart() %>% 
@@ -175,5 +196,13 @@ shinyServer(function(input, output) {
       color = "green", fill = TRUE
     )
   })
+  
+  ################ GRAFICO 3 y 4 testeo ############################
+  output$teststock <- renderHighchart({
+    getSymbols("GOOG", auto.assign = FALSE) %>% 
+      hchart})
+  output$distPlot2 <- renderPlot({
+    BoxmediaCA})
+  ################ GRAFICO 3 y 4 testeo ############################
   
 })
