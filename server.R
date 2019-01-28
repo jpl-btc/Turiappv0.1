@@ -117,12 +117,12 @@ BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-
+  
   output$distPlot2 <- renderPlot({
-      BoxmediaCA})
+    BoxmediaCA})
   
   output$teststock <- renderHighchart({
-      getSymbols("GOOG", auto.assign = FALSE) %>% 
+    getSymbols("GOOG", auto.assign = FALSE) %>% 
       hchart})
   
   output$accionesmes <- renderHighchart({
@@ -143,7 +143,7 @@ shinyServer(function(input, output) {
           data = MesACC$ACCDIF,
           color = "green")
       )
-    })
+  })
   
   output$conocimientomes <- renderHighchart({
     highchart() %>% 

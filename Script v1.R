@@ -30,8 +30,8 @@ testin("timetk")
 testin("kableExtra")
 testin("tidyquant")
 testin("tibbletime")
+testin("shinyWidgets")
 testin("")
-testin("shiny")
 
 # que ondaaa
 

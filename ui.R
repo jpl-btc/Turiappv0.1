@@ -13,6 +13,7 @@ library(shiny)
 library(shinydashboard)
 library(highcharter)
 library(quantmod)
+library(shinyWidgets)
 
 
 dashboardPage(skin = "blue",
@@ -32,7 +33,7 @@ dashboardPage(skin = "blue",
   dashboardBody(
     tabItems(
       tabItem(tabName = "dashboard",
-              h2("El aumento de conciencia ambiental de las personas que nos conocieron"),
+              h2("El aumento de conciencia ambiental de las personas que nos conocieron",align = "center"),
               
               fluidRow(
                 infoBoxOutput("approvalBoxtodo"),
@@ -48,12 +49,21 @@ dashboardPage(skin = "blue",
                     highchartOutput("conocimientomes")),
                 
                 box(title = "Guía", status = "primary", solidHeader = TRUE,
-                    selectInput("x2", label = "Nombre de la persona que realizo la guiada", width = "100%",
+                    selectInput("guia", label = "Nombre de la persona que realizo la guiada", width = "100%",
                                 choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"), selected= "Todos")
                     ),
                 box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
 
                     selectInput("x", label = "Tipo de excursión o producto ecoturistico", width = "100%",
+                                choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"), selected= "Todas")
+                ),
+                box(title = "Guía2", status = "primary", solidHeader = TRUE,
+                    selectInput("guia", label = "Nombre de la persona que realizo la guiada", width = "100%",
+                                choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"), selected= "Todos")
+                ),
+                box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
+                    
+                    selectInput("x2", label = "Tipo de excursión o producto ecoturistico", width = "100%",
                                 choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"), selected= "Todas")
                 )
                 
