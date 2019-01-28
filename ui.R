@@ -9,9 +9,6 @@
 #
 options(encoding = "UTF-8")
 
-
-
-
 dashboardPage(skin = "blue",
               dashboardHeader(title="TURI APP"),
               dashboardSidebar(
