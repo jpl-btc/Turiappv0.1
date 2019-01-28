@@ -42,12 +42,6 @@ dashboardPage(skin = "blue",
                           ),
                           
                           fluidRow(
-                            box(title="Acciones", status = "primary", solidHeader = TRUE,
-                                highchartOutput("accionesmes")),
-                            
-                            box(title="Conocimiento", status = "primary", solidHeader = TRUE,
-                                highchartOutput("conocimientomes")),
-                            
                             box(title = "Guía", status = "primary", solidHeader = TRUE,
                                 selectInput("guia", 
                                             label = "Nombre de la persona que realizo la guiada", 
@@ -56,6 +50,7 @@ dashboardPage(skin = "blue",
                                                          "Todos"), 
                                             selected= "Todos")
                             ),
+                            
                             box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
                                 
                                 selectInput("productoeco",
@@ -66,7 +61,12 @@ dashboardPage(skin = "blue",
                                             selected= "Todos")
                             ),
                             
-                            tableOutput("data")
+                            box(title="Acciones", status = "primary", solidHeader = TRUE,
+                                highchartOutput("accionesmes")),
+                            
+                            box(title="Conocimiento", status = "primary", solidHeader = TRUE,
+                                highchartOutput("conocimientomes"))
+                            
                             
                           )
                   ),

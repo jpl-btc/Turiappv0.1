@@ -111,12 +111,7 @@ BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
 shinyServer(function(input, output) {
   
   #Filtra la tabla de datos en funcion de la seleccion de guia y ecoproducto
-  output$data <- renderTable({
-    
-    dfInput()
-    
-  })
-  
+
 
   dfInput <- reactive({
     
