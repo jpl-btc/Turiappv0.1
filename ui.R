@@ -104,6 +104,10 @@ dashboardPage(skin = "blue",
                           h4("Desde ya muchas gracias por apoyar el proyecto y estar aca. Esto va ir mejorando con los meses y an(i)os.
                              La paciencia apremia. Por ahora veran que tengo un problema con los acentos y en(i)es, mil disculpas, 
                              pero por ahora los acentos no son prioridad y es un error que requiere tiempo."),
+                          br(),
+                          h4("Si no ven datos aún es porque hace falta esperar al menos dos meses para ver resultados.
+                             Si en la seccion General solo ven una columna con un número en lugar de una fecha, es porque solo hay datos del primer mes."),
+                          br(),
                           h4("Cualquier duda, necesidad, pregunta, o problema, mandenme un email a jplaclau@turi.eco les respondere a la brevedad.
                              O pueden usar el sistema de contacto de este mismo sitio web."),
                           br(),

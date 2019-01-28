@@ -145,7 +145,7 @@ shinyServer(function(input, output) {
     output$accionesmes <- renderHighchart({
     ################ GRAFICO 1 ############################
     #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
-    ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
+    ACC <-subset(dfInput(), select = c(Mes,ACCDIF))
     MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
     MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
     ################ GRAFICO 1 ############################
@@ -171,7 +171,7 @@ shinyServer(function(input, output) {
       output$conocimientomes <- renderHighchart({
     ################ GRAFICO 2 ############################
     #Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
-    CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
+    CON <-subset(dfInput(), select = c(Mes,CONDIF))
     MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
     MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
     ################ GRAFICO 2 ############################
