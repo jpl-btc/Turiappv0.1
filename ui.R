@@ -49,7 +49,7 @@ dashboardPage(skin = "blue",
                     highchartOutput("conocimientomes")),
                 
                 box(title = "Guía", status = "primary", solidHeader = TRUE,
-                    selectInput("guia", label = "Nombre de la persona que realizo la guiada", width = "100%",
+                    selectInput("guia2", label = "Nombre de la persona que realizo la guiada", width = "100%",
                                 choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"), selected= "Todos")
                     ),
                 box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
@@ -57,17 +57,29 @@ dashboardPage(skin = "blue",
                     selectInput("x", label = "Tipo de excursión o producto ecoturistico", width = "100%",
                                 choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"), selected= "Todas")
                 ),
-                box(title = "Guía2", status = "primary", solidHeader = TRUE,
-                    selectInput("guia", label = "Nombre de la persona que realizo la guiada", width = "100%",
-                                choices =  c(Tue1y2nona$`¿Cuál es el nombre de su guía?`,"Todos"), selected= "Todos")
-                ),
+                
+                ###
+                
+                box(title = "Guía", status = "primary", solidHeader = TRUE,
+                     pickerInput(
+                      inputId = "guia",
+                      label = "Guía",
+                      choices = unique(Tue1y2nona$`¿Cuál es el nombre de su guía?`),
+                      selected = Tue1y2nona$`¿Cuál es el nombre de su guía?`,
+                      multiple = TRUE,
+                      options = list(`actions-box` = TRUE) 
+                    )),
+                
                 box(title = "Tipo de producto ecoturistico:", status = "primary", solidHeader = TRUE,
+                    pickerInput(
+                      inputId = "productoeco",
+                      label = "Producto ecoturistico",
+                      choices = unique(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`),
+                      selected = Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,
+                      multiple = TRUE,
+                      options = list(`actions-box` = TRUE) 
+                    ))
                     
-                    selectInput("x2", label = "Tipo de excursión o producto ecoturistico", width = "100%",
-                                choices =  c(Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?`,"Todas"), selected= "Todas")
-                )
-                
-                
               )
       ),
       tabItem(tabName = "avd",
