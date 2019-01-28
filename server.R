@@ -113,6 +113,13 @@ shinyServer(function(input, output) {
   #Filtra la tabla de datos en funcion de la seleccion de guia y ecoproducto
   output$data <- renderTable({
     
+    dfInput()
+    
+  })
+  
+
+  dfInput <- reactive({
+    
     if (input$guia=="Todos" & input$productoeco=="Todos") {
       Tue1y2nona }
     
@@ -130,9 +137,6 @@ shinyServer(function(input, output) {
                Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
     
   })
-  
-
-  
 
   
 
