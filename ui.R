@@ -29,8 +29,8 @@ dashboardPage(skin = "blue",
                           h2("El aumento de conciencia ambiental de las personas que nos conocieron",align = "center"),
                           
                           fluidRow(
-                            infoBoxOutput("approvalBoxtodo"),
-                            infoBoxOutput("approvalBoxmespasado"),
+                            infoBoxOutput('infoBox1'),
+                            infoBoxOutput('infoBox2'),
                             infoBox("Certificado", icon = icon("award"), fill = TRUE)
                           ),
                           

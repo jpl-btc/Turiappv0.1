@@ -112,18 +112,44 @@ shinyServer(function(input, output) {
           color = "BLUE")
       )
   })
-  output$approvalBoxtodo <- renderInfoBox({
-    infoBox(
-      "Siempre", icon = icon("thumbs-up", lib = "glyphicon"),
-      color = "green", fill = TRUE
-    )
-  })
-  output$approvalBoxmespasado <- renderInfoBox({
-    infoBox(
-      "Mes pasado", icon = icon("thumbs-up", lib = "glyphicon"),
-      color = "green", fill = TRUE
-    )
-  })
+      
+      output$infoBox1 <- renderInfoBox({
+        x <- runif(1, 0, 10)
+          #mean(subset(dfInput(), select = c(ACCDIF)))
+        if(x < 6) {(color <- 'yellow')
+          (title <-"Hay que esforzarse")
+          (icon=icon("triangle-right", lib = "glyphicon")) 
+        }
+        else { (color <- 'green')
+          (title <-"¡Muy bien!")
+          (icon=icon("thumbs-up", lib = "glyphicon"))
+        }
+        infoBox(value = x,
+                title = title,
+                color = color,
+                icon = icon,
+                fill = TRUE)
+      })
+      output$infoBox2 <- renderInfoBox({
+        x <- runif(1, 0, 10)
+          #mean(subset(dfInput(), select = c(CONDIF)))
+        
+        if(x < 6) {(color <- 'yellow')
+                  (title <-"Hay que esforzarse")
+          (icon=icon("triangle-right", lib = "glyphicon")) 
+        }
+        else { (color <- 'green')
+             (title <-"¡Muy bien!")
+          (icon=icon("thumbs-up", lib = "glyphicon"))
+        }
+        infoBox(value = x,
+                title = title,
+                color = color,
+                icon = icon,
+                fill = TRUE)
+      })
+
+      
   ################ GRAFICO 3 ############################
   
   output$distPlot2 <- renderPlot({
