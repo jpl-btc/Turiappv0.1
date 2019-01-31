@@ -9,9 +9,6 @@ Lista de cosas pendientes para hacer
 En server
 ###########################
 
-Cambiar server de lugar, poner denuevo el wordpress en turiplus
-y poner 1.turi.plus la pwa
-eso conlleva a renovar todos los fuckin certificados
 
 
 
@@ -52,7 +49,7 @@ Y claro al terminar la encuesta la persona es redirigida a una pwa en funcion de
 
 
 
-ALGO INTERESANTE> AGREGAR UN WORD COUNT EN LA ENCUESTA DE ONLINE 1 MES DESPUE
+ALGO INTERESANTE> AGREGAR UN WORD COUNT EN LA ENCUESTA DE ONLINE 1 MES DESPUES
 PONER LO DE LA MEMORIA SI SE ACUERDA O NO, AL FINAL Y LUEGO QUE DESCRIBA EN UNA FASE O UNA PALABRA LA EXCURSION. Y ESO USARLO PARA UN WORDCOUNT
 
 SUPER SUPER IMPORTANTE: SE DESCARGAN LA BASE DE DATOS DE EMAIL DESDE AHI!!!!
@@ -70,7 +67,7 @@ Le cambio el nombre y le pongo Abramar-formsblabla
 4.Duplico el Turiapp de github, le agrego el nombre adelante
 ejemplo: Abramar-Turiappv0.1
 5. Modifico la app con la url correcta de la nueva google sheets.
-6. Pregunto si necesita personalizacion
+6. Pregunto si necesita personalizacion? Idiomas? Otros botones? 
 
 ### A este punto ya se juntan datos de primera encuesta, de 2nda encuesta, y ya se procesan los mismos.
 

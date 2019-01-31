@@ -27,13 +27,15 @@ dashboardPage(skin = "blue",
                 tabItems(
                   tabItem(tabName = "dashboard",
                           h2("El aumento de conciencia ambiental de las personas que nos conocieron",align = "center"),
-                          
+                          br(),
+                          h4("A continuación se encuentra el porcentaje de personas que aumentaron su conciencia ambiental luego de haber realizado una experiencia con nosotros."),
                           fluidRow(
                             infoBoxOutput('infoBox1'),
                             infoBoxOutput('infoBox2'),
                             infoBox("Certificado", icon = icon("award"), fill = TRUE)
                           ),
-                          
+                          br(),
+                          h4("A continuación se encuentra el total de puntos aumentados en acciones y en conocimiento ambiental. Se puede visualizar este efecto por guía o por excursión."),
                           fluidRow(
                             box(title = "Guía", status = "primary", solidHeader = TRUE,
                                 selectInput("guia", 

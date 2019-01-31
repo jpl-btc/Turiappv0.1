@@ -114,35 +114,35 @@ shinyServer(function(input, output) {
   })
       
       output$infoBox1 <- renderInfoBox({
-        x <- runif(1, 0, 10)
+        x <- 50
           #mean(subset(dfInput(), select = c(ACCDIF)))
-        if(x < 6) {(color <- 'yellow')
+        if(x < 30) {(color <- 'yellow')
           (title <-"Hay que esforzarse")
           (icon=icon("triangle-right", lib = "glyphicon")) 
         }
         else { (color <- 'green')
-          (title <-"¡Muy bien!")
+          (title <-"En total")
           (icon=icon("thumbs-up", lib = "glyphicon"))
         }
-        infoBox(value = x,
+        infoBox(value = paste0(x , "%"),
                 title = title,
                 color = color,
                 icon = icon,
                 fill = TRUE)
       })
       output$infoBox2 <- renderInfoBox({
-        x <- runif(1, 0, 10)
+        xmes <- lapply((runif(1, 0, 100)), round, 0)
           #mean(subset(dfInput(), select = c(CONDIF)))
         
-        if(x < 6) {(color <- 'yellow')
-                  (title <-"Hay que esforzarse")
+        if(xmes < 50) {(color <- 'yellow') 
+                  (title <-"Último mes")
           (icon=icon("triangle-right", lib = "glyphicon")) 
         }
         else { (color <- 'green')
              (title <-"¡Muy bien!")
           (icon=icon("thumbs-up", lib = "glyphicon"))
         }
-        infoBox(value = x,
+        infoBox(value = paste0(xmes , "%"),
                 title = title,
                 color = color,
                 icon = icon,
