@@ -1,5 +1,21 @@
+
 TO DO LIST
 
+Lista de cosas pendientes para hacer
+
+
+#############
+En server
+#############
+
+Cambiar server de lugar, poner denuevo el wordpress en turiplus
+y poner 1.turi.plus la pwa
+eso conlleva a renovar todos los fuckin certificados
+
+
+#############
+En la APP
+#############
 
 how many rows
 antes vs despues = significativo
@@ -7,6 +23,7 @@ antes vs despues = significativo
 date <- select today date
 interval from date-1month to date
 
-
 IDEA: premio a los 10, premimo a los 20? a los 50? a los 100? 200? 500? 1000? 2000? 5000? 10000?
+
+
 
