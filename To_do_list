@@ -4,18 +4,20 @@ TO DO LIST
 Lista de cosas pendientes para hacer
 
 
-#############
+
+###########################
 En server
-#############
+###########################
 
 Cambiar server de lugar, poner denuevo el wordpress en turiplus
 y poner 1.turi.plus la pwa
 eso conlleva a renovar todos los fuckin certificados
 
 
-#############
+
+###########################
 En la APP
-#############
+###########################
 
 how many rows
 antes vs despues = significativo
@@ -24,6 +26,7 @@ date <- select today date
 interval from date-1month to date
 
 IDEA: premio a los 10, premimo a los 20? a los 50? a los 100? 200? 500? 1000? 2000? 5000? 10000?
+
 
 
 ###########################
@@ -48,7 +51,42 @@ Seria un gol de media cancha.
 Y claro al terminar la encuesta la persona es redirigida a una pwa en funcion del idioma cuyo solo objetivo es el de auto instalarse y mandarle reminders en su idioma a lo loco para que conteste la segunda parte, que es redirigirlo a una unica , una x idioma, y tercera shiny survey, en realidad puede ser una google forms. deberia poner el mismo email. asi lo asociamos bien. 
 
 
+
 ALGO INTERESANTE> AGREGAR UN WORD COUNT EN LA ENCUESTA DE ONLINE 1 MES DESPUE
 PONER LO DE LA MEMORIA SI SE ACUERDA O NO, AL FINAL Y LUEGO QUE DESCRIBA EN UNA FASE O UNA PALABRA LA EXCURSION. Y ESO USARLO PARA UN WORDCOUNT
+
+SUPER SUPER IMPORTANTE: SE DESCARGAN LA BASE DE DATOS DE EMAIL DESDE AHI!!!!
+
+
+###########################
+Una empresa compra el paquete
+Pasos a seguir iniciales
+###########################
+
+1.Creo carpeta en google forms duplicando la forms 1ra parte de tuempresa-original
+Le cambio el nombre y le pongo Abramar-formsblabla
+2. Dicha forms, le modifico los nombres de los guias y el de los productos para personalizacion
+3. Dicha google forms nueva le genero el excell asociado para los resultados
+4.Duplico el Turiapp de github, le agrego el nombre adelante
+ejemplo: Abramar-Turiappv0.1
+5. Modifico la app con la url correcta de la nueva google sheets.
+6. Pregunto si necesita personalizacion
+
+### A este punto ya se juntan datos de primera encuesta, de 2nda encuesta, y ya se procesan los mismos.
+
+
+
+###########################
+En la web el proceso debe ser:
+###########################
+
+Menu:
+1. url con la opcion de logout
+2. opcion de mi cuenta ... tal vez aca agregar una mini shiny app indicando cuantos datos fueron juntados y cuantos faltan para poder analizar
+3. en algun lugar algo que le indique a decir cuales son los guias, y cuales los productos, Y la duracion que tarda la pushnotification en aparecer
+4. la webapp con los datos
+5. una seccion de comunidad... link a un grupo de facebook cerrado?
+6. capacidad de crear nuevos usuarios...los guias o empleados?
+
 
 
