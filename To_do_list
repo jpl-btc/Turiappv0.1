@@ -26,4 +26,29 @@ interval from date-1month to date
 IDEA: premio a los 10, premimo a los 20? a los 50? a los 100? 200? 500? 1000? 2000? 5000? 10000?
 
 
+###########################
+TURI APP V0.1
+###########################
+
+fileInput para la descarga del certificado
+
+rmarckdown generate document para el certificado
+
+
+en la google sheets, en lugar de crear mil millones de google sheets, crear un codigo de empresa. y que esten obligados a ponerlo
+" ABAR0001 "
+
+luego , buscar si con las google forms, puedo elegir el tipo de empresa para seleccionar diferentes guias o productos, en funcion de la empresa...
+
+Claro todo esto se debe poder hacer con shiny. El asunto es que shiny no funca offline... o si?
+
+Me parece que algo bueno seria hacer una encuesta dinamica con shiny. primero elije el codigo de la empresa. y despues pasa a las preguntas de esa empresa y las preguntas de CA
+
+Seria un gol de media cancha.
+Y claro al terminar la encuesta la persona es redirigida a una pwa en funcion del idioma cuyo solo objetivo es el de auto instalarse y mandarle reminders en su idioma a lo loco para que conteste la segunda parte, que es redirigirlo a una unica , una x idioma, y tercera shiny survey, en realidad puede ser una google forms. deberia poner el mismo email. asi lo asociamos bien. 
+
+
+ALGO INTERESANTE> AGREGAR UN WORD COUNT EN LA ENCUESTA DE ONLINE 1 MES DESPUE
+PONER LO DE LA MEMORIA SI SE ACUERDA O NO, AL FINAL Y LUEGO QUE DESCRIBA EN UNA FASE O UNA PALABRA LA EXCURSION. Y ESO USARLO PARA UN WORDCOUNT
+
 
