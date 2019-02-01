@@ -29,6 +29,7 @@ dashboardPage(skin = "blue",
                           h2("El aumento de conciencia ambiental de las personas que nos conocieron",align = "center"),
                           br(),
                           h4("A continuación se encuentra el porcentaje de personas que aumentaron su conciencia ambiental luego de haber realizado una experiencia con nosotros."),
+                          br(),
                           fluidRow(
                             infoBoxOutput('infoBox1'),
                             infoBoxOutput('infoBox2'),
@@ -36,7 +37,13 @@ dashboardPage(skin = "blue",
                             # infoBox("Certificado", icon = icon("award"), fill = TRUE)
                           ),
                           br(),
+                          fluidRow(
+                            downloadButton("report", "Generate report")
+                            # infoBox("Certificado", icon = icon("award"), fill = TRUE)
+                          ),
+                          br(),
                           h4("A continuación se encuentra el total de puntos aumentados en acciones y en conocimiento ambiental. Se puede visualizar este efecto por guía o por excursión."),
+                          br(),
                           fluidRow(
                             box(title = "Guía", status = "primary", solidHeader = TRUE,
                                 selectInput("guia", 
