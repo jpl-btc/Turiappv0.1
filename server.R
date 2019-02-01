@@ -130,6 +130,7 @@ shinyServer(function(input, output) {
             icon = icon,
             fill = TRUE)
   })
+  
   output$infoBox2 <- renderInfoBox({
     xmes <- lapply((runif(1, 0, 100)), round, 0)
     #mean(subset(dfInput(), select = c(CONDIF)))
@@ -146,6 +147,14 @@ shinyServer(function(input, output) {
             title = title,
             color = color,
             icon = icon,
+            fill = TRUE)
+  })
+  
+  output$infoBox3 <- renderInfoBox({
+    infoBox(value = paste0( "Descargar"),
+            title = "Certificado",
+            color = "blue",
+            icon =  icon("award"),
             fill = TRUE)
   })
   
