@@ -111,10 +111,9 @@ dashboardPage(skin = "blue",
                           h4("Jean-Paul Laclau"),
                           h5("jplaclau@turi.eco")
                           
-                          )
                   )
+                )
               )
 )
-
 
 

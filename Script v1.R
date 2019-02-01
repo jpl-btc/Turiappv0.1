@@ -31,7 +31,7 @@ testin("kableExtra")
 testin("tidyquant")
 testin("tibbletime")
 testin("shinyWidgets")
-testin("")
+testin("shinyBS")
 
 # que ondaaa
 
@@ -41,6 +41,7 @@ library(tidyverse)
 library(log4r)
 library(ggplot2)
 library(highcharter)
+library(shinyBS) 
 
 
 

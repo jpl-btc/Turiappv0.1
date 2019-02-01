@@ -39,7 +39,7 @@ shinyServer(function(input, output) {
   
   #Filtra la tabla de datos en funcion de la seleccion de guia y ecoproducto
   dfInput <- reactive({
-
+    
     if (input$guia=="Todos" & input$productoeco=="Todos") {
       Tue1y2nona }
     
@@ -57,12 +57,12 @@ shinyServer(function(input, output) {
                Tue1y2nona$`¿Cuál es el tipo de actividad que va a hacer?` == input$productoeco)}
     
   })
-
   
-
+  
+  
   
   #Highchart CONCIENCIA AMBIENTAL MENSUAL ACC
-    output$accionesmes <- renderHighchart({
+  output$accionesmes <- renderHighchart({
     ################ GRAFICO 1 ############################
     #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
     ACC <-subset(dfInput(), select = c(Mes,ACCDIF))
@@ -87,8 +87,8 @@ shinyServer(function(input, output) {
       )
   })
   
-    #Highchart CONCIENCIA AMBIENTAL MENSUAL CON
-      output$conocimientomes <- renderHighchart({
+  #Highchart CONCIENCIA AMBIENTAL MENSUAL CON
+  output$conocimientomes <- renderHighchart({
     ################ GRAFICO 2 ############################
     #Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
     CON <-subset(dfInput(), select = c(Mes,CONDIF))
@@ -112,48 +112,48 @@ shinyServer(function(input, output) {
           color = "BLUE")
       )
   })
-      
-      output$infoBox1 <- renderInfoBox({
-        x <- 50
-          #mean(subset(dfInput(), select = c(ACCDIF)))
-        if(x < 30) {(color <- 'yellow')
-          (title <-"Hay que esforzarse")
-          (icon=icon("triangle-right", lib = "glyphicon")) 
-        }
-        else { (color <- 'green')
-          (title <-"En total")
-          (icon=icon("thumbs-up", lib = "glyphicon"))
-        }
-        infoBox(value = paste0(x , "%"),
-                title = title,
-                color = color,
-                icon = icon,
-                fill = TRUE)
-      })
-      output$infoBox2 <- renderInfoBox({
-        xmes <- lapply((runif(1, 0, 100)), round, 0)
-          #mean(subset(dfInput(), select = c(CONDIF)))
-        
-        if(xmes < 50) {(color <- 'yellow') 
-                  (title <-"Último mes")
-          (icon=icon("triangle-right", lib = "glyphicon")) 
-        }
-        else { (color <- 'green')
-             (title <-"¡Muy bien!")
-          (icon=icon("thumbs-up", lib = "glyphicon"))
-        }
-        infoBox(value = paste0(xmes , "%"),
-                title = title,
-                color = color,
-                icon = icon,
-                fill = TRUE)
-      })
-
-      
+  
+  output$infoBox1 <- renderInfoBox({
+    x <- 50
+    #mean(subset(dfInput(), select = c(ACCDIF)))
+    if(x < 30) {(color <- 'yellow')
+      (title <-"Hay que esforzarse")
+      (icon=icon("triangle-right", lib = "glyphicon")) 
+    }
+    else { (color <- 'green')
+      (title <-"En total")
+      (icon=icon("thumbs-up", lib = "glyphicon"))
+    }
+    infoBox(value = paste0(x , "%"),
+            title = title,
+            color = color,
+            icon = icon,
+            fill = TRUE)
+  })
+  output$infoBox2 <- renderInfoBox({
+    xmes <- lapply((runif(1, 0, 100)), round, 0)
+    #mean(subset(dfInput(), select = c(CONDIF)))
+    
+    if(xmes < 50) {(color <- 'yellow') 
+      (title <-"Último mes")
+      (icon=icon("triangle-right", lib = "glyphicon")) 
+    }
+    else { (color <- 'green')
+      (title <-"¡Muy bien!")
+      (icon=icon("thumbs-up", lib = "glyphicon"))
+    }
+    infoBox(value = paste0(xmes , "%"),
+            title = title,
+            color = color,
+            icon = icon,
+            fill = TRUE)
+  })
+  
+  
   ################ GRAFICO 3 ############################
   
   output$distPlot2 <- renderPlot({
     BoxmediaCA})
   
-
+  
 })
