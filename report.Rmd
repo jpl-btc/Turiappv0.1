@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 TEST
 
 ```{r cars}
-
+plot(BoxmediaCA)
 ```
 
 ## Including Plots
