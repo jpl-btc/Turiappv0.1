@@ -68,3 +68,51 @@ BoxmediaCA <- ggplot(mediaCA, aes(x=tipo, y=media,fill=encuesta)) +
   theme(legend.position="top")
 
 
+
+################ GRAFICO 2 ############################
+#Highchart CONOCIMIENTO AMBIENTAL MENSUAL Preparo los datos
+CON <-subset(Tue1y2nona, select = c(Mes,CONDIF))
+MesCON <-aggregate(. ~Mes, data=CON, mean, na.rm=TRUE)
+MesCON$CONDIF <- lapply(MesCON$CONDIF, round, 1)
+################ GRAFICO 2 ############################
+g2 <- highchart() %>% 
+  hc_chart(type = "column") %>% 
+  hc_title(text = "Aumento del conocimiento ambiental") %>% 
+  hc_subtitle(text = "De las personas guiadas un mes despues de habernos conocido") %>% 
+  hc_xAxis(categories = MesCON$Mes) %>% 
+  hc_yAxis(title = list(text = "Puntaje en Conocimiento")) %>% 
+  hc_plotOptions(line = list(
+    dataLabels = list(enabled = TRUE),
+    enableMouseTracking = FALSE)
+  ) %>% 
+  hc_series(
+    list(
+      name = "Conocimiento de problematicas ambientales",
+      data = MesCON$CONDIF,
+      color = "BLUE")
+  )
+
+
+
+################ GRAFICO 1 ############################
+#Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
+ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
+MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
+MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
+################ GRAFICO 1 ############################
+g1 <- highchart() %>% 
+  hc_chart(type = "column") %>% 
+  hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
+  hc_subtitle(text = "De las personas guiadas un mes despues de habernos conocido") %>% 
+  hc_xAxis(categories = MesACC$Mes) %>% 
+  hc_yAxis(title = list(text = "Puntaje en Conciencia ambiental")) %>% 
+  hc_plotOptions(line = list(
+    dataLabels = list(enabled = TRUE),
+    enableMouseTracking = FALSE)
+  ) %>% 
+  hc_series(
+    list(
+      name = "Conciencia ambiental",
+      data = MesACC$ACCDIF,
+      color = "green")
+  )

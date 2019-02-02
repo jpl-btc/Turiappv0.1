@@ -33,8 +33,9 @@ testin("tibbletime")
 testin("shinyWidgets")
 testin("shinyBS")
 testin("latexpdf")
-
+testin("PhantomJS")
 # que ondaaa
+webshot::install_phantomjs()
 
 library(shiny) 
 library(gsheet)
