@@ -13,6 +13,8 @@ options(encoding = "UTF-8")
 library(shiny)
 library(shinydashboard)
 library(log4r)
+library(latexpdf) 
+
 
 loggerDebug <- create.logger()
 logfile(loggerDebug) <- 'data/debugData.log'

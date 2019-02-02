@@ -32,6 +32,7 @@ testin("tidyquant")
 testin("tibbletime")
 testin("shinyWidgets")
 testin("shinyBS")
+testin("latexpdf")
 
 # que ondaaa
 
@@ -42,7 +43,7 @@ library(log4r)
 library(ggplot2)
 library(highcharter)
 library(shinyBS) 
-
+library(latexpdf)
 
 
 
