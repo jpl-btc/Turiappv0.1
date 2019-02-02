@@ -163,6 +163,9 @@ shinyServer(function(input, output) {
   output$report <- downloadHandler(
     filename = "report.pdf",
     content = function(file) {
+      
+      src <- normalizePath('report.Rmd')
+
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
@@ -170,7 +173,7 @@ shinyServer(function(input, output) {
       file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
       # Set up parameters to pass to Rmd document
-      params <- list(n = input$slider)
+      params <- list(n = input$guia,input$productoeco)
       
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
