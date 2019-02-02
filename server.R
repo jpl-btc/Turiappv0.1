@@ -159,8 +159,12 @@ shinyServer(function(input, output) {
             color = "blue",
             icon =  icon("award"),
             fill = TRUE,
-            output$report.pdf <- downloadHandler(
-              filename = "report.pdf",
+            downloadHandler( #ATENCION
+              #En Rstudio no funciona bien el filename. Para que funcione hay que ejecutar la app asi:
+              #runApp('C:/JPL/Dropbox/TURIECO/Turiappv0.1',launch.browser = TRUE)
+              filename = function() {
+                paste0("CertificadoTuri_", Sys.Date(),".pdf")
+                },
               content = function(file) {
                 # Copy the report file to a temporary directory before processing it, in
                 # case we don't have write permissions to the current working dir (which
