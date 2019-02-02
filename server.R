@@ -14,6 +14,7 @@ library(shiny)
 library(shinydashboard)
 library(log4r)
 library(latexpdf) 
+library(shinyBS) 
 
 
 loggerDebug <- create.logger()
@@ -153,36 +154,73 @@ shinyServer(function(input, output) {
   })
   
   output$infoBox3 <- renderInfoBox({
-    infoBox(value = paste0( "Descargar"),
+    ib3 <- infoBox(
             title = "Certificado",
             color = "blue",
             icon =  icon("award"),
-            fill = TRUE)
+            fill = TRUE,
+            output$report.pdf <- downloadHandler(
+              filename = "report.pdf",
+              content = function(file) {
+                # Copy the report file to a temporary directory before processing it, in
+                # case we don't have write permissions to the current working dir (which
+                # can happen when deployed).
+                tempReport <- file.path(tempdir(), "report.Rmd")
+                file.copy("report.Rmd", tempReport, overwrite = TRUE)
+                # Set up parameters to pass to Rmd document
+                params <- list(n = input$guia,input$productoeco)
+                # Knit the document, passing in the `params` list, and eval it in a
+                # child of the global environment (this isolates the code in the document
+                # from the code in this app).
+                rmarkdown::render(tempReport, output_file = file,
+                                  params = params,
+                                  envir = new.env(parent = globalenv())
+                )})
+            
+    )
+    
+    return(ib3)
   })
+
+  observeEvent(input$Descargar, {
+    output$report.pdf <- downloadHandler(
+      filename = "report.pdf",
+      content = function(file) {
+        # Copy the report file to a temporary directory before processing it, in
+        # case we don't have write permissions to the current working dir (which
+        # can happen when deployed).
+        tempReport <- file.path(tempdir(), "report.Rmd")
+        file.copy("report.Rmd", tempReport, overwrite = TRUE)
+        # Set up parameters to pass to Rmd document
+        params <- list(n = input$guia,input$productoeco)
+        # Knit the document, passing in the `params` list, and eval it in a
+        # child of the global environment (this isolates the code in the document
+        # from the code in this app).
+        rmarkdown::render(tempReport, output_file = file,
+                          params = params,
+                          envir = new.env(parent = globalenv())
+        )}
+    )
+    })
   
-  output$report <- downloadHandler(
+  output$report.pdf <- downloadHandler(
     filename = "report.pdf",
     content = function(file) {
-      
-      src <- normalizePath('report.Rmd')
-
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
       tempReport <- file.path(tempdir(), "report.Rmd")
       file.copy("report.Rmd", tempReport, overwrite = TRUE)
-      
       # Set up parameters to pass to Rmd document
       params <- list(n = input$guia,input$productoeco)
-      
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
       # from the code in this app).
       rmarkdown::render(tempReport, output_file = file,
                         params = params,
                         envir = new.env(parent = globalenv())
-      )
-    }
+      )}
+    
   )
   
   ################ GRAFICO 3 ############################

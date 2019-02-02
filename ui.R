@@ -38,7 +38,7 @@ dashboardPage(skin = "blue",
                           ),
                           br(),
                           fluidRow(
-                            downloadButton("report", "Generate report")
+                            downloadButton("report.pdf", "Generate report")
                             # infoBox("Certificado", icon = icon("award"), fill = TRUE)
                           ),
                           br(),

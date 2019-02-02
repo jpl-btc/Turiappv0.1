@@ -10,7 +10,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,verbose=TRUE)
-
+           
 ```
 
 ## R Markdown
@@ -19,6 +19,7 @@ TEST
 
 ```{r cars}
 plot(BoxmediaCA)
+
 ```
 
 ## Including Plots
