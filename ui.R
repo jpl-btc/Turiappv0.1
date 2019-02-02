@@ -36,11 +36,7 @@ dashboardPage(skin = "blue",
                             infoBoxOutput('infoBox3')
                             # infoBox("Certificado", icon = icon("award"), fill = TRUE)
                           ),
-                          br(),
-                          fluidRow(
-                            downloadButton("report.pdf", "Generate report")
-                            # infoBox("Certificado", icon = icon("award"), fill = TRUE)
-                          ),
+
                           br(),
                           h4("A continuación se encuentra el total de puntos aumentados en acciones y en conocimiento ambiental. Se puede visualizar este efecto por guía o por excursión."),
                           br(),
