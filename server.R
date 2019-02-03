@@ -7,7 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-options(encoding = "UTF-8")
 
 
 library(shiny)
@@ -162,6 +161,7 @@ shinyServer(function(input, output) {
             downloadHandler( #ATENCION
               #En Rstudio no funciona bien el filename. Para que funcione hay que ejecutar la app asi:
               #runApp('C:/JPL/Dropbox/TURIECO/Turiappv0.1',launch.browser = TRUE)
+            
               filename = function() {
                 paste0("CertificadoTuri_", Sys.Date(),".pdf")
                 },
@@ -176,9 +176,12 @@ shinyServer(function(input, output) {
                 # Knit the document, passing in the `params` list, and eval it in a
                 # child of the global environment (this isolates the code in the document
                 # from the code in this app).
-                rmarkdown::render(tempReport, output_file = file,
+                rmarkdown::render(tempReport,
+                                  encoding = 'UTF-8',
+                                  output_file = file,
                                   params = params,
                                   envir = new.env(parent = globalenv())
+                                  
                 )})
             )
         return(ib3)

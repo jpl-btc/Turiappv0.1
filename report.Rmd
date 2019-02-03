@@ -1,7 +1,7 @@
 ---
 title: "Certificado"
 author: "Turi.eco"
-date: "February 1, 2019"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   pdf_document: default
   html_document:
@@ -10,18 +10,22 @@ always_allow_html: yes
 allow_html_dependencies: true
 keep_tex: yes
 
-#options(allow_html_in_all_outputs=TRUE)
 
+
+#options(allow_html_in_all_outputs=TRUE)
+# output: html_fragment
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,verbose=TRUE)
+
+
            
 ```
 
-## R Markdown
+## Impacto de nuestra actividad sobre los turistas
+  A continuación se encuentra el aumento en conciencia ambiental y conocimiento ambiental que generó nuestra institución en los últimos meses en los turistas que nos contrataron para tener alguna de nuestras excursiones
 
-TEST
 
 ```{r cars}
 
@@ -34,10 +38,11 @@ TEST
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE,}
-require(slidify)
-require(rCharts)
+
 require(highcharter)
-library(highcharter)
+require(rCharts)
+require(slidify)
+require(knitr)
 
 
 ################ GRAFICO 2 ############################
@@ -88,19 +93,10 @@ g1 <- highchart() %>%
       color = "green")
   )
 
-g1$print
-g2$print
 
-print(g1)
-print(g2)
-
-print("g1")
-print("g2")
-                       
-
-
-                                
-                       
+g1
+g2
+              
                                 
                             
 ```

@@ -7,6 +7,8 @@
 
 # setwd("C:/JPL/Dropbox/TURIECO/Turiappv0.1")
 
+# ejecutar la app desde el browser
+# runApp('C:/JPL/Dropbox/TURIECO/Turiappv0.1',launch.browser = TRUE)
 
 testin <- function(package){
   if (!package %in% installed.packages()) {   
