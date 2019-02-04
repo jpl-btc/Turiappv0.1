@@ -23,6 +23,7 @@ level(loggerDebug) <- 'INFO'
 loggerServer <- create.logger()
 logfile(loggerServer) <- 'data/serverData.log'
 level(loggerServer) <- 'INFO'
+options(shiny.sanitize.errors = FALSE)
 
 
 
@@ -161,7 +162,8 @@ shinyServer(function(input, output) {
             downloadHandler( #ATENCION
               #En Rstudio no funciona bien el filename. Para que funcione hay que ejecutar la app asi:
               #runApp('C:/JPL/Dropbox/TURIECO/Turiappv0.1',launch.browser = TRUE)
-            
+              #runApp('/home/jplaclau/Turiapp/Turi/',launch.browser = TRUE)
+              
               filename = function() {
                 paste0("CertificadoTuri_", Sys.Date(),".pdf")
                 },
@@ -177,7 +179,7 @@ shinyServer(function(input, output) {
                 # child of the global environment (this isolates the code in the document
                 # from the code in this app).
                 rmarkdown::render(tempReport,
-                                  encoding = 'UTF-8',
+                                  encoding = "UTF-8",
                                   output_file = file,
                                   params = params,
                                   envir = new.env(parent = globalenv())

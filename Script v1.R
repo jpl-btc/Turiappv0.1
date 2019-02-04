@@ -39,14 +39,7 @@ testin("PhantomJS")
 # que ondaaa
 webshot::install_phantomjs()
 
-library(shiny) 
-library(gsheet)
-library(tidyverse)
-library(log4r)
-library(ggplot2)
-library(highcharter)
-library(shinyBS) 
-library(latexpdf)
+
 
 
 
