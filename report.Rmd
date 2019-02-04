@@ -1,15 +1,10 @@
 ---
 title: "Certificado"
 author: "Turi.eco"
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+date: '`r format(Sys.Date(), "%d/%m/%Y")`'
 output:
   pdf_document: default
-  html_document:
-    df_print: paged
-always_allow_html: yes
-allow_html_dependencies: true
-keep_tex: yes
-
+classoption: landscape
 
 
 #options(allow_html_in_all_outputs=TRUE)
@@ -19,30 +14,37 @@ keep_tex: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,verbose=TRUE)
 
-
+#require(highcharter)
+#require(rCharts)
+#require(slidify)
+#require(knitr)
            
 ```
 
-## Impacto de nuestra actividad sobre los turistas
-  A continuación se encuentra el aumento en conciencia ambiental y conocimiento ambiental que generó nuestra institución en los últimos meses en los turistas que nos contrataron para tener alguna de nuestras excursiones
+```{r pressure, echo=FALSE}
+################ GET DATA ############################
+Tue1 <-gsheet2tbl('docs.google.com/spreadsheets/d/1kd84-Rn1HKYF9DJ2pdRPbZYmqC2MD_JjM95by7RFFik/edit?usp=sharing')
+Tue2 <-gsheet2tbl('docs.google.com/spreadsheets/d/1luumPYYc6r0JJEMJ3xC4mNA1GUox0GTKoPgKgbrGyno/edit?usp=sharing')
+Tue1y2 <- left_join(Tue1, Tue2, by = "Email Address")
+Tue1y2nona <- na.omit(Tue1y2)
 
 
-```{r cars}
+################ FECHAS ############################
+Hours <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%H:%M:%S")
+Dates <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m-%d")
+Mes <- format(as.POSIXct(strptime(Tue1y2nona$Timestamp.x,"%m/%d/%Y %H:%M:%S",tz="")) ,format = "%Y-%m")
+Tue1y2nona$Mes <- Mes
+Tue1y2nona$Dates <- Dates
+Tue1y2nona$Hours <- Hours
 
 
-
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE,}
-
-require(highcharter)
-require(rCharts)
-require(slidify)
-require(knitr)
+################ preparacion GRAFICOS Hichart  ############################
+Tue1y2nona$CONPRE <- rowMeans(Tue1y2nona[,c(9:12)], na.rm=TRUE)
+Tue1y2nona$ACCPRE <- rowMeans(Tue1y2nona[,c(13:22)], na.rm=TRUE) 
+Tue1y2nona$CONONL <- rowMeans(Tue1y2nona[,c(29:32)], na.rm=TRUE) 
+Tue1y2nona$ACCONL <- rowMeans(Tue1y2nona[,c(33:42)], na.rm=TRUE) 
+Tue1y2nona$CONDIF <- Tue1y2nona$CONONL - Tue1y2nona$CONPRE
+Tue1y2nona$ACCDIF <- Tue1y2nona$ACCONL - Tue1y2nona$ACCPRE
 
 
 ################ GRAFICO 2 ############################
@@ -67,9 +69,6 @@ g2 <- highchart() %>%
       data = MesCON$CONDIF,
       color = "BLUE")
   )
-
-
-
 ################ GRAFICO 1 ############################
 #Highchart CONCIENCIA AMBIENTAL MENSUAL Preparo los datos
 ACC <-subset(Tue1y2nona, select = c(Mes,ACCDIF))
@@ -77,6 +76,7 @@ MesACC <-aggregate(. ~Mes, data=ACC, mean, na.rm=TRUE)
 MesACC$ACCDIF <- lapply(MesACC$ACCDIF, round, 1)
 ################ GRAFICO 1 ############################
 g1 <- highchart() %>% 
+  #hc_size(width = 400, height = 200 ) %>% 
   hc_chart(type = "column") %>% 
   hc_title(text = "Aumento de acciones a favor del medio ambiente") %>% 
   hc_subtitle(text = "De las personas guiadas un mes despues de habernos conocido") %>% 
@@ -93,12 +93,24 @@ g1 <- highchart() %>%
       color = "green")
   )
 
-
-g1
-g2
-              
-                                
-                            
 ```
 
-TEST
+
+```{r g1yg2, echo=FALSE}
+g1
+g2
+           
+```
+
+## Impacto de nuestra actividad sobre los turistas
+  Este es el aumento en conciencia ambiental y conocimiento ambiental que generó nuestra institución en los últimos meses en los turistas que nos contrataron para tener alguna de nuestras excursiones.
+  
+  
+```{r params, echo=FALSE, include=TRUE}
+
+```
+
+
+
+
+

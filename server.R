@@ -174,15 +174,17 @@ shinyServer(function(input, output) {
                 tempReport <- file.path(tempdir(), "report.Rmd")
                 file.copy("report.Rmd", tempReport, overwrite = TRUE)
                 # Set up parameters to pass to Rmd document
-                params <- list(n = input$guia, input$productoeco)
+                params <- list(n = output$conocimientomes, output$accionesmes)
                 # Knit the document, passing in the `params` list, and eval it in a
                 # child of the global environment (this isolates the code in the document
                 # from the code in this app).
                 rmarkdown::render(tempReport,
                                   encoding = "UTF-8",
                                   output_file = file,
-                                  params = params,
-                                  envir = new.env(parent = globalenv())
+                                  params = params #list(conocimientomes = conocimientomes(),
+                                                #accionesmes = accionesmes())#
+                                  
+                                  #envir = new.env(parent = globalenv())
                                   
                 )})
             )
