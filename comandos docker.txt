@@ -1,0 +1,29 @@
+export MY_ZONE=
+export MY_ZONE=us-central1-a
+gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 1
+kubectl run nginx --image=nginx:1.10.0
+kubectl get pods
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+kubectl scale deployment nginx --replicas 3
+kubectl get services
+
+kubectl run rocker-shiny --image=rocker/shiny --port=3838 --rm -p 3838:3838 rocker/shiny
+
+
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+kubectl expose deployment rocker-shiny --port 3838 --type LoadBalancer
+
+
+kubectl run rocker-rstudio --image=rocker/rstudio --port=8787 --rm -p 8787:8787 rocker/rstudio
+
+kubectl scale deployment rocker-shiny --replicas 2
+
+
+gcloud container clusters create Shiny4operators --zone $MY_ZONE --num-nodes 1
+
+
+PRIMERO HACER TODO EN EL DOCKER DE LA VIRTUAL MACHINE
+
+1 empezar con el docker de shiny proxy demo.  probar que todo funca
+l poner el shiny proxi en un docker publico y levantarlo
+ponerlo en un docker privado y levantarlo

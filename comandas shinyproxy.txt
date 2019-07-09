@@ -1,0 +1,10 @@
+https://www.shinyproxy.io/getting-started/
+
+https://support.openanalytics.eu/t/how-to-configure-docker-startup-on-ubuntu-18/842/2
+
+sudo wget https://www.shinyproxy.io/downloads/shinyproxy_2.3.0_amd64.deb
+
+sudo docker images | grep shinyproxy
+
+sudo docker run -p 3838:3838 openanalytics/shinyproxy-demo R -e 'shinyproxy::run_01_hello()' 
+
