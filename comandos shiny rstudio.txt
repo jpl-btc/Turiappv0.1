@@ -1,0 +1,83 @@
+https://medium.com/ensina-ai/seu-app-rstudio-e-shiny-na-nuvem-do-google-31753d71619
+
+su root
+passwd shinyrstudio
+gpasswd -a shinyrstudio sudo
+su shinyrstudio
+
+sudo apt install curl
+sudo apt-get update
+sudo apt-get -y install nginx
+
+curl ipinfo.io/ip
+# ir al navegador con esa ip
+
+-----------------
+## ram google f1
+cd /
+sudo dd if=/dev/zero of=swapfile bs=1M count=3000
+sudo mkswap swapfile
+sudo swapon swapfile
+sudo nano etc/fstab
+# Adicione a linha a seguir no arquivo que abrir
+/swapfile none swap sw 0 0 
+cat /proc/meminfo
+
+-----------------
+
+https://idroot.us/install-r-ubuntu-18-04-lts/
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+sudo apt-get update
+sudo apt install r-base
+R --version
+
+---------------------
+https://medium.com/ensina-ai/seu-app-rstudio-e-shiny-na-nuvem-do-google-31753d71619
+
+sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
+
+sudo su - -c "R -e \"install.packages(c('devtools','rmarkdown', 'quantmod'), repos='http://cran.rstudio.com/')\""
+
+RSTUDIO
+sudo apt-get install gdebi-core
+sudo wget https://download2.rstudio.org/rstudio-server-1.1.456-amd64.deb
+sudo gdebi rstudio-server-1.1.456-amd64.deb
+sudo apt-get -y install nginx
+http://0.0.0.0:8787/
+
+SHINY
+sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+sudo apt-get install gdebi-core
+sudo wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb
+sudo gdebi shiny-server-1.5.9.923-amd64.deb
+
+
+sudo systemctl start shiny-server
+sudo systemctl stop shiny-server
+sudo systemctl restart shiny-server
+
+
+GIT
+sudo apt-get -y install git
+git config --global user.email "laclaujeanpaul@gmail.com"
+git config --global user.name "JPLACLAU"
+
+
+
+nice stuff here: https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/
+
+cd /srv/shiny-server
+sudo git init
+
+sudo git clone https://JPLACLAU:2Sc5xZH22p6smNS@github.com/JPLACLAU/Turiappv0.1
+
+cd /srv/shiny-server
+sudo rm index.html
+
+sudo su - -c "R -e \"install.packages(c('shiny','tidyverse','gsheet', 'ggplot2','shinydashboard','highcharter','quantmod','shinyWidgets','latexpdf','log4r','rmarkdown','shinyBS'), repos='http://cran.rstudio.com/')\""
+
+#not shure:  ("highcharter", "kableExtra", "PerformanceAnalytics", "quantmod", "tibbletime", "tidyquant", "tidyverse", "timetk", "webshot"))
+
