@@ -8,3 +8,6 @@ sudo docker images | grep shinyproxy
 
 sudo docker run -p 3838:3838 openanalytics/shinyproxy-demo R -e 'shinyproxy::run_01_hello()' 
 
+
+------------------
+
